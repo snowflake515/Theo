@@ -92,7 +92,39 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
         <label class="col-sm-4 control-label">Stop Time</label>
         <div class="col-sm-6">
           <?php
-          $time = (!empty($dt->ApptStop)) ? time_format($dt->ApptStop) : NULL;
+          $temp_time = explode(":", date("h:i:sa"));
+          $t_time = date("h:i a");
+          if (intval($temp_time[1] % 5 != 0)) {
+            if ((5 * (intval($temp_time[1] / 5) + 1)) < 10) {
+              if (5 * (intval($temp_time[1] / 5) + 1) == 60) {
+                $t_time = strval(intval($temp_time[0]) + 1) . ":00";
+              }else{
+                $t_time = $temp_time[0] . ":0" . strval(5 * (intval($temp_time[1] / 5) + 1));
+              }
+            }else{
+              if (5 * (intval($temp_time[1] / 5) + 1) == 60) {
+                $t_time = strval(intval($temp_time[0]) + 1) . ":00";
+              }else{
+                $t_time = $temp_time[0] . ":" . strval(5 * (intval($temp_time[1] / 5) + 1));
+              }
+            }
+          }
+          $temp_time1 = explode(":", $t_time);
+          if ((intval($temp_time1[1]) + 30) >= 60) {
+            if ((intval($temp_time1[1]) - 30) < 10) {
+              $t_time = strval($temp_time1[0]) . ":0" . strval(intval($temp_time1[1]) - 30);
+            }else{
+              $t_time = strval($temp_time1[0]) . ":" . strval(intval($temp_time1[1]) - 30);
+            }
+          }else{
+            $t_time = strval($temp_time1[0]) . ":" . strval(intval($temp_time1[1]) + 30);
+          }
+          if (intval($temp_time[0]) >= 12 ){
+            $t_time = $t_time . " pm";
+          }else{
+            $t_time = $t_time . " am";
+          }
+          $time = (!empty($dt->ApptStop)) ? time_format($dt->ApptStop) : $t_time;
           $stop_time =  set_value('ApptStopTime', $time);
           //$stop_time = time_format(form_value('ApptStop', $dt));
           $stop_time = ((form_value('ApptStop', $dt) == NULL) && ($this->input->get('current_time') != NULL) ) ? strtolower(date("h:i A", strtotime('+30 minutes', strtotime($this->input->get('current_time'))))) : $stop_time;
