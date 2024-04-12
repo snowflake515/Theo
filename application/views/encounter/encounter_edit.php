@@ -16,7 +16,7 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
     <div class="form-group">
       <div class="col-sm-6">
         <p>
-          <a href="<?php echo site_url('schedule')?>" class="btn btn-default btn-sm"><i class="icon icon-arrow-left"></i>&nbsp;&nbsp;  Back</a>
+          <a href="<?php echo site_url('patient')?>" class="btn btn-default btn-sm"><i class="icon icon-arrow-left"></i>&nbsp;&nbsp;  Back</a>
           <a class="btn save-encounter btn-success btn-sm <?php echo ($dt->EncounterSignedOff == 1) ? 'disabled' : ''?>" onclick="saveEnncounterAjax(); document.getElementById('select_template_form').submit();" ><i class="icon icon-file"></i>&nbsp;&nbsp;  Templates</a>
           <button type="submit" name="submit" value="save" class="btn btn-primary btn-sm" <?php echo disabled_ecnounter($dt->EncounterSignedOff)?>><i class="icon icon-save"></i>&nbsp;&nbsp;  Save</button>
         
@@ -40,10 +40,7 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
               <a  href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/provider/$dt->Encounter_ID")?>">Provider Report</a>
             </li>
             <li>
-              <a  href="<?php echo site_url("theoreport?eid=$dt->Encounter_ID&edate=$dt->EncounterDate&pid=$dt->Patient_ID")?>" target="_blank"  class=" no-openalert" >THEO Care Plan</a>
-            </li>
-            <li>
-              <a  href="<?php echo site_url("template_v2/generate_careplan/" . $dt->Encounter_ID)?>" target="_blank"  class=" no-openalert" >Generate CarePLan</a>
+              <a  onclick="alert('This is a new feature that is coming soon!')" target="_blank"  class=" no-openalert" >Clinical Track</a>
             </li>
           </ul>
         </div>
@@ -51,8 +48,8 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
           <a href="javascript:void(0);" style=" padding: 6px 10px;" class="btn btn-default btn-sm no-openalert" data-toggle="dropdown">Save Report &nbsp;<i class="icon-caret-down"></i></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo  site_url('encounter/save_report/provider/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Provider Report</a></li>
-            <?php echo  ($sm) ? '<li><a href="'. site_url("encounter/save_report/summary/$dt->Encounter_ID/print")  .'"  class="no-openalert">Save Summary Report </a></li>' : NULL;?>
             <li><a href="<?php echo site_url('encounter/save_report/patient/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Patient Report</a></li>
+            <li><a onclick="alert('This is a new feature that is coming soon!')" target="_blank" class=" no-openalert" >Save Clinical Track</a></li>
           </ul>
         </div>
         <div class="btn-group dropup text-left" style="display:inline-block;">
@@ -65,7 +62,10 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
             </li>
             <?php echo  ($sm) ? '<li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/report/summary/$dt->Encounter_ID/print") . '">View Summary Report </a></li>' : NULL;?>
             <li>
-              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/patient/$dt->Encounter_ID/print/1")?>">View Patient Report</a>
+              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/patient/$dt->Encounter_ID/print/1")?>">Print Patient Report</a>
+            </li>
+            <li>
+              <a onclick="alert('This is a new feature that is coming soon!')">Print Clinical Track</a>
             </li>
           </ul>
         </div>
@@ -87,7 +87,7 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
         //       <ul class="dropdown-menu" role="menu" style="top:-91px">
         //         <li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/report/$dt->Encounter_ID/print") . '">View Provider Report</a></li>
         //         ' . $sumarry_report_link . '
-        //         <li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/report/$dt->Encounter_ID/print/1") . '">View Patient Report</a></li>
+        //         <li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/report/$dt->Encounter_ID/print/1") . '">Print Patient Report</a></li>
         //       </ul>
         //     </div>';
         //
