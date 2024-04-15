@@ -8,7 +8,7 @@
   <br/>
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-8">
-      <?php echo anchor('schedule', '<i class="icon icon-arrow-left"></i>&nbsp;&nbsp;  Back', array('class' => 'btn btn-default')); ?>
+      <?php echo anchor('patient', '<i class="icon icon-arrow-left"></i>&nbsp;&nbsp;  Back', array('class' => 'btn btn-default')); ?>
       <button type="submit" class="btn btn-primary" <?php echo disabled(form_value('Patient_ID', $patient)) ?>><i class="icon icon-save"></i>&nbsp;&nbsp; Save</button>
     </div>
   </div>

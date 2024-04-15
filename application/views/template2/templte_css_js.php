@@ -346,10 +346,10 @@
       $('select#TML1_ID').removeAttr('disabled');
       $('div#container-tml3, div#container-tml2').removeClass('loading');
     }
-
   }
 
   function init_mask() {
+    // $('#wrap_tml3 input').type = 'number';
     $('#wrap_tml3 input.form-control[data-mask="integer"]').inputmask({"mask": "9", "repeat": 3, "greedy": false});
     $('#wrap_tml3 input.form-control[data-mask="realnumber"]').inputmask('Regex', {regex: "^[0-9]*[0-9].[0-9][0-9]$"});
     $('#wrap_tml3 input.form-control[data-mask="alphanumeric"]').inputmask('Regex', {regex: "^[a-zA-Z0-9 ,;]+$/"});

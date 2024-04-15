@@ -207,7 +207,7 @@ class Schedule extends CI_Controller {
       $ApplicationSpecificText = "Update Appointment";
       $this->mylib->action_audit_log($ApplicationSpecificText, "AP", "U", $id_Appointment, $this->input->post('Patient_ID'));
 
-      redirect($this->self);
+      redirect('patient');
     }
   }
 
