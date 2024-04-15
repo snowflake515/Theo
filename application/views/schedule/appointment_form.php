@@ -73,11 +73,7 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
                 $t_time = $temp_time[0] . ":" . strval(5 * (intval($temp_time[1] / 5) + 1));
               }
             }
-            if (intval($temp_time[0]) >= 12 ){
-              $t_time = $t_time . " pm";
-            }else{
-              $t_time = $t_time . " am";
-            }
+            $t_time = $t_time . " " . explode(" ", date("h:i a"))[1];
           }
           $time = (!empty($dt->ApptStart)) ? time_format($dt->ApptStart) : $t_time;
           $value_start_date =  set_value('ApptStartTime', $time);
@@ -112,18 +108,22 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
           $temp_time1 = explode(":", $t_time);
           if ((intval($temp_time1[1]) + 30) >= 60) {
             if ((intval($temp_time1[1]) - 30) < 10) {
-              $t_time = strval($temp_time1[0]) . ":0" . strval(intval($temp_time1[1]) - 30);
+              if ((intval($temp_time1[0]) + 1) < 10) {
+                $t_time = "0" + strval(intval($temp_time1[0]) + 1) . ":0" . strval(intval($temp_time1[1]) - 30);
+              }else{
+                $t_time = strval(intval($temp_time1[0]) + 1) . ":0" . strval(intval($temp_time1[1]) - 30);
+              }
             }else{
-              $t_time = strval($temp_time1[0]) . ":" . strval(intval($temp_time1[1]) - 30);
+              if ((intval($temp_time1[0]) + 1) < 10) {
+                $t_time = "0" + strval(intval($temp_time1[0]) + 1) . ":" . strval(intval($temp_time1[1]) - 30);
+              }else{
+                $t_time = strval(intval($temp_time1[0]) + 1) . ":" . strval(intval($temp_time1[1]) - 30);
+              }
             }
           }else{
             $t_time = strval($temp_time1[0]) . ":" . strval(intval($temp_time1[1]) + 30);
           }
-          if (intval($temp_time[0]) >= 12 ){
-            $t_time = $t_time . " pm";
-          }else{
-            $t_time = $t_time . " am";
-          }
+          $t_time = $t_time . " " . explode(" ", date("h:i a"))[1];
           $time = (!empty($dt->ApptStop)) ? time_format($dt->ApptStop) : $t_time;
           $stop_time =  set_value('ApptStopTime', $time);
           //$stop_time = time_format(form_value('ApptStop', $dt));
