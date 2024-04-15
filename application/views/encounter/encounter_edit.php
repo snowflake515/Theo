@@ -58,9 +58,8 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
           </a>
           <ul class="dropdown-menu" role="menu" style="left:auto; right:0">
             <li>
-              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/provider/$dt->Encounter_ID/print")?>">View Provider Report</a>
+              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/provider/$dt->Encounter_ID/print")?>">Print Provider Report</a>
             </li>
-            <?php echo  ($sm) ? '<li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/report/summary/$dt->Encounter_ID/print") . '">View Summary Report </a></li>' : NULL;?>
             <li>
               <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/patient/$dt->Encounter_ID/print/1")?>">Print Patient Report</a>
             </li>
