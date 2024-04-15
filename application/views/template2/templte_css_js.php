@@ -350,8 +350,26 @@
 
   function init_mask() {
     // $('#wrap_tml3 input').type = 'number';
-    $('#wrap_tml3 input.form-control[data-mask="integer"]').inputmask({"mask": "9", "repeat": 3, "greedy": false});
-    $('#wrap_tml3 input.form-control[data-mask="realnumber"]').inputmask('Regex', {regex: "^[0-9]*[0-9].[0-9][0-9]$"});
+    // $('#wrap_tml3 input.form-control[type="text"]').inputtype({"mask": "9", "repeat": 3, "greedy": false});
+    $('#wrap_tml3 input.form-control[data-mask="realnumber"]').attr({
+    'type': 'number',
+    'step': '0.01'
+    }).on('input', function() {
+    var value = $(this).val();
+    if (value.length > 4) {
+        $(this).val(value.slice(0, 5));
+    }
+    });
+    $('#wrap_tml3 input.form-control[data-mask="integer"]').attr({
+    'type': 'number',
+    'step': '1'
+    }).on('input', function() {
+    var value = $(this).val();
+    if (value.length > 3) {
+        $(this).val(value.slice(0, 3));
+    }
+    });
+
     $('#wrap_tml3 input.form-control[data-mask="alphanumeric"]').inputmask('Regex', {regex: "^[a-zA-Z0-9 ,;]+$/"});
     $('#wrap_tml3 input.form-control[data-mask="letters_only"]').inputmask('Regex', {regex: "^[A-Za-z ]*[A-Za-z ][A-Za-z ]*$"});
   }

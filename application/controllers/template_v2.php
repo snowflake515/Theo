@@ -70,7 +70,6 @@ class Template_v2 extends CI_Controller {
     $check_theo_connect = $check_tml1_theo['check_theo_connect'];
     $patient_vitals = $check_tml1_theo['patient_vitals'];
 
-
     $data['tml1'] = $tml1;
     $data['Encounter_ID'] = $encounter_id;
     $data['VideoPlay_ID'] = !empty($check_theo_connect->TheoVideoPlay_ID) ? $check_theo_connect->TheoVideoPlay_ID : 0;
@@ -80,7 +79,6 @@ class Template_v2 extends CI_Controller {
 
     $tml2 = $this->load->view($this->self . "/tml2", $data, TRUE);
     $tml3 = $this->load->view($this->self . "/tml3", $data, TRUE);  
-
     $this->PhqModel->check_phq($tml1, $encounter_id);
 
     $ress = array(
