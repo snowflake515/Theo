@@ -15,7 +15,7 @@ $state = $this->StateModel->get_all()->result();
 </div>
 
 <ul id="myTab" class="nav nav-tabs">
-  <li class=""><?php echo anchor("patient/demographics/$patient_id", "Demographics", 'id="demographics" class="tab_patients"'); ?></li>
+  <li class=""><?php echo anchor("patient/demographics/$patient_id", "Patient Information", 'id="demographics" class="tab_patients"'); ?></li>
   <li class=""><?php echo anchor("patient/office_information/$patient_id", "Office Information", 'id="office_information" class="tab_patients"'); ?> </li>
   <li class="active"><?php echo anchor("patient/responsible_party/$patient_id", "Responsible Party", 'id="responsible_party" class="tab_patients"'); ?></a></li>
   <li class=""><?php echo anchor("patient/user_defined_fields/$patient_id", "User Defined Fields", 'id="user_defined_fields" class="tab_patients"'); ?></a></li>
