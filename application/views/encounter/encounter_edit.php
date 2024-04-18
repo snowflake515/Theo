@@ -20,7 +20,6 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
           <a class="btn save-encounter btn-success btn-sm <?php echo ($dt->EncounterSignedOff == 1) ? 'disabled' : ''?>" onclick="saveEnncounterAjax(); document.getElementById('select_template_form').submit();" ><i class="icon icon-file"></i>&nbsp;&nbsp;  Templates</a>
           <button type="submit" name="submit" value="save" class="btn btn-primary btn-sm" <?php echo disabled_ecnounter($dt->EncounterSignedOff)?>><i class="icon icon-save"></i>&nbsp;&nbsp;  Save</button>
         
-
           <?php
           //echo anchor('clinical_trigger/patient/' . $this->EncounterHistoryModel->encript($dt->Encounter_ID), ' Clinical Triggers', array('class' => 'btn btn-danger', 'id' => 'clinical_triggers', 'data-id' => $this->EncounterHistoryModel->encript($dt->Encounter_ID)));
           ?>
@@ -37,7 +36,10 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
           </a>
           <ul class="dropdown-menu text-left" role="menu">
             <li>
-              <a  href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/provider/$dt->Encounter_ID")?>">Provider Report</a>
+              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/provider/$dt->Encounter_ID")?>">Provider Report</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/patient/$dt->Encounter_ID")?>">Patient Report</a>
             </li>
             <li>
               <a  onclick="alert('This is a new feature that is coming soon!')" target="_blank"  class=" no-openalert" >Clinical Track</a>

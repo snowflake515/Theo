@@ -50,7 +50,6 @@
    
   <link rel="stylesheet" href="<?php echo base_url('assets/app/css/prettyCheckable.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/ace/css/') ?>/additional.css?<?php echo date('YmdHis') ?>" />
-
   <!--[if lte IE 8]>
   <link rel="stylesheet" href="<?php echo base_url('assets/ace/css/') ?>/ace-ie.min.css" />
   <![endif]-->
@@ -217,7 +216,6 @@ document.write("<script src='<?php echo base_url('assets/ace/js/') ?>/jquery.mob
 
 <script src="<?php echo base_url('assets/app/js/jquery.inputmask.bundle.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/app/js/prettyCheckable.min.js') ?>"></script>
-
 <!-- jcm -->
 <script src="<?php echo base_url('assets/app/js/clinical_trigger_api.js') ?>"></script>
 

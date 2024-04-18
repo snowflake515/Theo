@@ -47,9 +47,6 @@ $provider = $this->ProviderProfileModel->get_by_field('Org_Id', $this->current_u
         <?php if ($patient_id) : ?>
           <a href="#appointment_modal"  data-toggle="modal" title="Appointment History" data-patient="<?php echo $patient_id ?>" onclick="appt_history_req(this)"><i class="icon-calendar"></i> Appointment History</a>
           <span>&nbsp;</span>
-          <?php if(!empty($this->current_user->Eligibility) && (int)$this->current_user->Eligibility == 1):?>
-            <a href="#eligibility_modal"  data-toggle="modal" title="Eligibility" data-patient="<?php echo $patient_id ?>" onclick="eligibility_req(this)"><i class="icon-check"></i> Eligibility</a>
-          <?php endif;?>
         <?php endif; ?>
       </div>
       <div class="panel-body">

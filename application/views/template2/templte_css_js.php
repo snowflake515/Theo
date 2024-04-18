@@ -144,7 +144,6 @@
 
 </style>
 <script>
-
   function onSave() {
     $('#digitPassword').modal('show');
   }
@@ -152,61 +151,88 @@
     $('#digitPassword').modal('show');
   }
   var site_url = '<?php echo site_url() ?>/';
+
   function change_new_tml1(el) {
     var $this = $(el);
-	var is_continue = true; 
-	 if($this.find('option:selected').text().includes("[Deleted] ---")){
-		var is_continue = confirm("The Template for this Encounter has been deleted. Do you want to continue using it?"); 
-		if(!is_continue){
-			$this.val('');
-			$('#wrap_tml2').html('');
-			$('#wrap_tml3').html('');
-		}
-	 }
+    var is_continue = true; 
+    // if (localStorage.getItem('data')) {
+    //   is_continue = false;
+    // }
+    if($this.find('option:selected').text().includes("[Deleted] ---")){
+      var is_continue = confirm("The Template for this Encounter has been deleted. Do you want to continue using it?"); 
+      if(!is_continue){
+        $this.val('');
+        $('#wrap_tml2').html('');
+        $('#wrap_tml3').html('');
+      }
+    }
 	
-	if(is_continue){ 
-		$('.msg-notif').text('Please Wait...');
-		open_loading(true);
+    if(is_continue){
+      $('.msg-notif').text('Please Wait...');
+      open_loading(true);
+      localStorage.setItem('tml1_ID', $this.val());
+      localStorage.setItem('Encounter_ID', $('#Encounter_ID').val());
+      $('.msg-notif').removeClass('hide');
+      $.ajax({
+        type: "POST",
+        url: site_url + "template_v2/change_tml1",
+        data: {tml1_ID: $this.val(), Encounter_ID: $('#Encounter_ID').val()},
+        success: function (data) {
+            localStorage.setItem('data', JSON.stringify(data));
+            $('#wrap_tml2').html(data.tml2);
+            $('#wrap_tml3').html(data.tml3);
+          
+            var phq2 = data.phq2_total;
+              
+            check_phq(phq2); 
+            open_loading(false);
+            $('.msg-notif').addClass('hide');
+            init_mask();
+            //show or hide btn save
+            if(data.tml3){
+              $('#btn-sv').removeClass('hide');
+            }else{
+              $('#btn-sv').addClass('hide');
+            }
 
-		$('.msg-notif').removeClass('hide');
-		$.ajax({
-		  type: "POST",
-		  url: site_url + "template_v2/change_tml1",
-		  data: {tml1_ID: $this.val(), Encounter_ID: $('#Encounter_ID').val()},
-		  success: function (data) {
-			$('#wrap_tml2').html(data.tml2);
-			$('#wrap_tml3').html(data.tml3);
-			
-			var phq2 = data.phq2_total;
-      
-    console.log(data);
-			  
-			check_phq(phq2); 
-			open_loading(false);
-			$('.msg-notif').addClass('hide');
-			init_mask();
-			//show or hide btn save
-			if(data.tml3){
-			  $('#btn-sv').removeClass('hide');
-			}else{
-			  $('#btn-sv').addClass('hide');
-			}
+            if(data.theo_session_id){
+              $('#btn-gp').removeClass('hide');
+              $('#btn-gp').attr('href', $('#btn-gp').attr('originurl') +'/'+ data.theo_session_id);
+            }else{
+              $('#btn-gp').addClass('hide');
+            }
+        },
+          error: function (ress, status, error) {
+          $('.msg-notif').addClass('hide');
+          my_handle_error(ress)
+          }
+      });
+	  }
+    // else{
+    //   var data = JSON.parse(localStorage.getItem('data'));
+    //   $('#wrap_tml2').html(data.tml2);
+    //   $('#wrap_tml3').html(data.tml3);
+    
+    //   var phq2 = data.phq2_total;
+        
+    //   check_phq(phq2); 
+    //   open_loading(false);
+    //   $('.msg-notif').addClass('hide');
+    //   init_mask();
+    //   //show or hide btn save
+    //   if(data.tml3){
+    //     $('#btn-sv').removeClass('hide');
+    //   }else{
+    //     $('#btn-sv').addClass('hide');
+    //   }
 
-			if(data.theo_session_id){
-			  $('#btn-gp').removeClass('hide');
-			  $('#btn-gp').attr('href', $('#btn-gp').attr('originurl') +'/'+ data.theo_session_id);
-			}else{
-			  $('#btn-gp').addClass('hide');
-			}
-		  },
-		  error: function (ress, status, error) {
-			$('.msg-notif').addClass('hide');
-			my_handle_error(ress)
-		  }
-		});
-		
-	}
-   
+    //   if(data.theo_session_id){
+    //     $('#btn-gp').removeClass('hide');
+    //     $('#btn-gp').attr('href', $('#btn-gp').attr('originurl') +'/'+ data.theo_session_id);
+    //   }else{
+    //     $('#btn-gp').addClass('hide');
+    //   }
+    // }
   }
 
   function change_new_tml2(el) {
@@ -243,15 +269,15 @@
   function change_new_tml3(el) {
     $('.msg-notif').text('Saved');
     var $this = $(el),
-            tml3_id = $this.data('tml3id'),
-            tml2_id = $this.data('tml2id'),
-            theoquestion_id = $this.data('theoquestion_id'),
-            theoanswer_id = $this.data('theoanswer_id'),
-            theovideoplay_id = $this.data('theovideoplay_id'),
-            theosession_id = $this.data('theosession_id'),
-            theoaccount_id = $this.data('theoaccount_id'),
-            is_checked = ($('#cbx_' + tml3_id).is(':checked')) ? 1 : 0,
-            input_val = null;
+        tml3_id = $this.data('tml3id'),
+        tml2_id = $this.data('tml2id'),
+        theoquestion_id = $this.data('theoquestion_id'),
+        theoanswer_id = $this.data('theoanswer_id'),
+        theovideoplay_id = $this.data('theovideoplay_id'),
+        theosession_id = $this.data('theosession_id'),
+        theoaccount_id = $this.data('theoaccount_id'),
+        is_checked = ($('#cbx_' + tml3_id).is(':checked')) ? 1 : 0,
+        input_val = null;
 
     if ($('#input_' + tml3_id).length) {
       input_val = $('#input_' + tml3_id).val();
@@ -265,7 +291,6 @@
     $('#modal_InstructionLabel').text('Loading...');
     $('#modal_tml3_id').val('');
     $('#val_insructure').val('');
-
 
     $.ajax({
       type: "POST",
@@ -294,17 +319,15 @@
 
  
         if ($this.data('enableins') == 1 && is_checked == 1) {
-
           var labl = $('#tm3_InstructionLabel_' + tml3_id).attr('value');
-
           $('#modal_template').modal('show');
-		  setTimeout(function(){
-		    $('#modal_tml3_id').val(tml3_id);
-			  $('#modal_InstructionLabel').text(labl);
-			  $('#val_insructure').focus();
-		  }, 1000);
-
+          setTimeout(function(){
+            $('#modal_tml3_id').val(tml3_id);
+            $('#modal_InstructionLabel').text(labl);
+            $('#val_insructure').focus();
+          }, 1000);
         }
+
         if ($this.data('forceselect') != "" && is_checked == 1) {
           var force_select = $('#wrap_tml3 [data-pforceselect="'+$this.data('forceselect')+'"]');
           if (force_select.length && force_select.is(':checked') == false) {
@@ -349,8 +372,6 @@
   }
 
   function init_mask() {
-    // $('#wrap_tml3 input').type = 'number';
-    // $('#wrap_tml3 input.form-control[type="text"]').inputtype({"mask": "9", "repeat": 3, "greedy": false});
     $('#wrap_tml3 input.form-control[data-mask="realnumber"]').attr({
     'type': 'number',
     'step': '0.01'
@@ -380,8 +401,8 @@
 
   function insert_answer_instr(el) {
     var
-            $tml3_id = $('#modal_tml3_id').val(),
-            $val_ans = $('#val_insructure').val()
+      $tml3_id = $('#modal_tml3_id').val(),
+      $val_ans = $('#val_insructure').val()
     if ($val_ans) {
       $('#li_tml3_' + $tml3_id).next('li').find('input[type="text"]').val($val_ans).trigger('blur');
       $('#modal_template').modal('hide');
@@ -481,7 +502,6 @@
           }, 
           success: function(data) {
             if (data === 'true') {
-              // window.location.href = site_url + 'clinical_trigger/encounter/' + $('#Encounter_ID').val();
               window.location.href = site_url + 'encounter/start/' + $('#Appointment_ID').val();
               return;
             }else{
