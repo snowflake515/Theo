@@ -42,7 +42,7 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
               <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/patient/$dt->Encounter_ID")?>">Patient Report</a>
             </li>
             <li>
-              <a  onclick="alert('This is a new feature that is coming soon!')" target="_blank"  class=" no-openalert" >Clinical Track</a>
+              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/clinical/$dt->Encounter_ID")?>">Clinical Track</a>
             </li>
           </ul>
         </div>
@@ -51,7 +51,7 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo  site_url('encounter/save_report/provider/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Provider Report</a></li>
             <li><a href="<?php echo site_url('encounter/save_report/patient/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Patient Report</a></li>
-            <li><a onclick="alert('This is a new feature that is coming soon!')" target="_blank" class=" no-openalert" >Save Clinical Track</a></li>
+            <li><a href="<?php echo site_url('encounter/save_report/clinical/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Clinical Track</a></li>
           </ul>
         </div>
         <div class="btn-group dropup text-left" style="display:inline-block;">
@@ -66,7 +66,7 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
               <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/patient/$dt->Encounter_ID/print/1")?>">Print Patient Report</a>
             </li>
             <li>
-              <a onclick="alert('This is a new feature that is coming soon!')">Print Clinical Track</a>
+            <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/clinical/$dt->Encounter_ID/print/1")?>">Print Clinical Track</a>
             </li>
           </ul>
         </div>

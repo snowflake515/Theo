@@ -52,7 +52,7 @@ class Encounter extends CI_Controller {
     if($dt->EncounterSignedOff != 1 || $check == 0 || $check2 > 0 ){
       $this->generate_all_reports($dt, 'PROVIDER', 0, 0);
       $this->generate_all_reports($dt, 'PATIENT' , 1, 0);
-      $this->generate_all_reports($dt, 'SUMMARY' , 0, 1);
+      $this->generate_all_reports($dt, 'CLINICAL' , 0, 1);
     }
 
     //xml generate
@@ -86,8 +86,9 @@ class Encounter extends CI_Controller {
 
     $url_footer = "./reports/footer/" . $patient->Patient_ID . ".html";
     file_put_contents($url_footer, $html, LOCK_EX);
-
     $print_mode = $report->ReportCategory;
+    log_message('error', "=========================");
+    log_message('error', $print_mode);
     if ($print_mode == "PROVIDER") {
       $url_html = "./reports/" . $encounterKey . '.html';
       $url_pdf = "./reports/" . $encounterKey . '.pdf';
@@ -96,10 +97,10 @@ class Encounter extends CI_Controller {
       $url_html = "./reports/patient_reports/" . $encounterKey . '.html';
       $url_pdf = "./reports/patient_reports/" . $encounterKey . '.pdf';
       $b_file = 'Patient Report';
-    } elseif ($print_mode == "SUMMARY") {
-      $url_html = "./reports/summary_reports/" . $encounterKey . '.html';
-      $url_pdf = "./reports/summary_reports/" . $encounterKey . '.pdf';
-      $b_file = 'Summary Report';
+    } elseif ($print_mode == "CLINICAL") {
+      $url_html = "./reports/clinical_reports/" . $encounterKey . '.html';
+      $url_pdf = "./reports/clinical_reports/" . $encounterKey . '.pdf';
+      $b_file = 'Clinical Report';
     }
 
     $html_report = $r->html;
@@ -186,9 +187,7 @@ class Encounter extends CI_Controller {
         echo $url_pdf;
         // echo "Please Generate Report First!111";
       }
-
     }
-
   }
 
   public function report($cat = NULL, $encounterKey = 0){
@@ -221,27 +220,12 @@ class Encounter extends CI_Controller {
 
     $data['print_mode'] = $print_mode;
     $data['PrintPatientOnly'] = $PrintPatientOnly;
+    $data['Field'] = $cat;
     if($summary_report){
       $data['summary_report'] = $summary_report;
     }
 
     $html = $this->load->view($data['partial'], $data, TRUE);
-    if($summary_report){
-      $sum_html = '';
-      $sum_html .= '<h4>Summary Report</h4>';
-      $sum_html .= $html;
-      $sum_html .= '<style> @media print { .no-print{ display: none; } }</style>';
-      $st_break = '<div style="height: 20px; margin: 80px auto; width: 7.0in; background: #f2f2f2" class="no-print"></div>';
-      $sum_html .= $st_break;
-      $sum_html .= '<div style="page-break-after: always;"></div> ';
-
-      //provider report
-      $report =  $this->get_row_report('Provider', $dt->Encounter_ID);
-      $r = !empty($report->Report) ? json_decode($report->Report) : NULL;
-      $sum_html .= !empty($r->html) ? $r->html : 'Please Generate Report First!' ;
-
-      $html = $sum_html;
-    }
 
     $q = array(
       'ID' => $dt->Encounter_ID,
