@@ -19,10 +19,6 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
           <a href="<?php echo site_url('patient')?>" class="btn btn-default btn-sm"><i class="icon icon-arrow-left"></i>&nbsp;&nbsp;  Back</a>
           <a class="btn save-encounter btn-success btn-sm <?php echo ($dt->EncounterSignedOff == 1) ? 'disabled' : ''?>" onclick="saveEnncounterAjax(); document.getElementById('select_template_form').submit();" ><i class="icon icon-file"></i>&nbsp;&nbsp;  Templates</a>
           <button type="submit" name="submit" value="save" class="btn btn-primary btn-sm" <?php echo disabled_ecnounter($dt->EncounterSignedOff)?>><i class="icon icon-save"></i>&nbsp;&nbsp;  Save</button>
-        
-          <?php
-          //echo anchor('clinical_trigger/patient/' . $this->EncounterHistoryModel->encript($dt->Encounter_ID), ' Clinical Triggers', array('class' => 'btn btn-danger', 'id' => 'clinical_triggers', 'data-id' => $this->EncounterHistoryModel->encript($dt->Encounter_ID)));
-          ?>
         </p>
       </div>
       <div class="col-sm-6  " style="text-align: right;">
@@ -74,45 +70,6 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
 
 
         <?php
-        // echo anchor("encounter/generate_report/$dt->Encounter_ID", 'Generate Report', array('class' => 'btn btn-default no-openalert ', 'id' => 'generate-en-report'));
-        //
-        // $link_view_report = '<a href="javascript:void(0);" class="popup btn btn-default no-openalert"
-        //  title="View Report"
-        // data-target="' . site_url("encounter/report/$dt->Encounter_ID") . '" >View Report</a>';
-        //
-        //
-        // $sumarry_report_link = ($sm) ? '<li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/summary_report/$dt->Encounter_ID/print") . '">View Summary Report </a></li>' : NULL;
-        //
-        // $link_print_report = '<div class="btn-group " style="display:inline-block;">
-        //       <a href="javascript:void(0);" style=" padding: 8px 10px;" class="btn btn-default no-openalert" data-toggle="dropdown">Print Report &nbsp;<i class="icon-caret-down"></i></a>
-        //       <ul class="dropdown-menu" role="menu" style="top:-91px">
-        //         <li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/report/$dt->Encounter_ID/print") . '">View Provider Report</a></li>
-        //         ' . $sumarry_report_link . '
-        //         <li><a href="javascript:void(0);"  class="popup no-openalert" data-target="' . site_url("encounter/report/$dt->Encounter_ID/print/1") . '">Print Patient Report</a></li>
-        //       </ul>
-        //     </div>';
-        //
-        // $sumarry_report_link = ($sm) ? '<li><a href="' . site_url('encounter/download_summary_report/' . $dt->Encounter_ID) . '" target="_blank" class=" no-openalert" >Save Summary Report </a></li>' : NULL;
-        // $css_sm = ($sm) ? '-91px' : '-65px';
-        // $link_save_report = '<div class="btn-group " style="display:inline-block;">
-        //       <a href="javascript:void(0);" style=" padding: 8px 10px;" class="btn btn-default no-openalert" data-toggle="dropdown">Save Report &nbsp;<i class="icon-caret-down"></i></a>
-        //       <ul class="dropdown-menu" role="menu" style="top:' . $css_sm . '">
-        //         <li><a href="' . site_url('encounter/save_pdf/' . $dt->Encounter_ID) . '" target="_blank" class=" no-openalert" data-target="' . site_url('encounter/save_pdf/' . $dt->Encounter_ID) . '">Save Provider Report</a></li>
-        //         ' . $sumarry_report_link . '
-        //         <li><a href="' . site_url('encounter/download_patient_report/' . $dt->Encounter_ID) . '" target="_blank" class=" no-openalert" data-target="' . site_url('encounter/download_patient_report/' . $dt->Encounter_ID) . '">Save Patient Report</a></li>
-        //       </ul>
-        //     </div>';
-        //
-        // $link_unlock_report = NULL;
-        // if ($this->mylib->only_supper_admin()) {
-        //   $link_unlock_report = '<a href="' . site_url('encounter/unlock/' . $dt->Encounter_ID) . '" class="btn btn-primary no-openalert"
-        //  title="Unlock Report"  ><i class="icon icon-unlock"></i>&nbsp; Unlock</a>';
-        // }
-        // echo $link_unlock_report;
-        // echo $link_view_report;
-        // echo $link_save_report;
-        // //echo anchor("encounter/save_pdf/$dt->Encounter_ID", 'Save Report', array('class' => 'btn btn-default no-openalert'));
-        // echo $link_print_report;
         ?>
       </div>
     </div>
