@@ -129,8 +129,7 @@ class Schedule extends CI_Controller {
       //log
       $ApplicationSpecificText = "Insert Appointment";
       $this->mylib->action_audit_log($ApplicationSpecificText, "AP", "A", $id_Appointment, $this->input->post('Patient_ID')); 
-      // echo site_url('encounter/start/' . $id_Appointment );
-      redirect('encounter/start/' . $id_Appointment);
+      redirect('encounter/start/' . $id_Appointment . '/1');
     }
   }
 
@@ -203,7 +202,6 @@ class Schedule extends CI_Controller {
       $this->create_status($id_Appointment);
       $this->process_encounter($id_Appointment);
 
-      //log
       $ApplicationSpecificText = "Update Appointment";
       $this->mylib->action_audit_log($ApplicationSpecificText, "AP", "U", $id_Appointment, $this->input->post('Patient_ID'));
 

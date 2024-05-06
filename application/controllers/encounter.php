@@ -13,7 +13,8 @@ class Encounter extends CI_Controller {
     $this->load->model('PhqModel');
   }
 
-  public function start($id_appt = null) {
+  public function start($id_appt = null, $flag = 0) {
+    log_message('error', $flag);
     $get_dt = $this->get_encounter_by_appt($id_appt);
     if($this->input->post('submit') == 'save'){
       $this->save_encounter($get_dt['dt'], $get_dt['appt']);
@@ -28,7 +29,11 @@ class Encounter extends CI_Controller {
     $data['appt'] = $get_dt['appt'];
     $data += $this->encounter_get_data($get_dt['dt']);
     $data['partial'] = $this->self . "/encounter_edit";
-    $this->load->view('layout', $data);
+    if ($flag == 1) {
+      redirect('template_v2/start/' . $data['dt']->Encounter_ID);
+    }else{
+      $this->load->view('layout', $data);
+    }
   }
 
   public function generate_report($encounterKey = 0, $json = true) {

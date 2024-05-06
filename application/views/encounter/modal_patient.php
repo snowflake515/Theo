@@ -21,10 +21,3 @@
     <button type="submit" class="btn btn-primary">Next</button>
   </div>
 </form>
-<!-- <script>
-    window.onload = function() {
-        let selectTemplateForm = document.getElementById("select_template_form");
-        let currentURL = window.location.href;
-        selectTemplateForm.action = currentURL;
-    };
-</script> -->
