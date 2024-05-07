@@ -4,6 +4,7 @@ $encounter = $this->EncounterDescriptionListModel->get_by_field('Org_Id', $this-
 $provider = $this->ProviderProfileModel->get_by_field('Org_Id', $this->current_user->Org_Id, $con);
 $facility = $this->FacilityListModel->get_by_field('Org_Id', $this->current_user->Org_Id, $con);
 $checkin_code = $this->CheckInCodeModel->get_by_field('Org_Id', $this->current_user->Org_Id)->result();
+$encounter_type = $encounter->result();
 
 $get_last_check = NULL;
 if(!empty($dt->Appointments_ID)){
@@ -166,12 +167,15 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
       <div class="form-group">
         <label class="col-sm-4 control-label">Encounter Type</label>
         <div class="col-sm-6" >
-          <div id="option_encounter_type"> 
-            <?php
+          <div id="option_encounter_type">        
+            <select name="EncounterDescription_ID" class="form-control" id="EncounterDescription_ID">
+              <option value="3020">WellTrackONE Visit</option>
+            </select>
+            <!-- <?php
             $blank = ($encounter->num_rows() == 1) ? TRUE : FALSE;
-            $option = option_select($encounter->result(), 'EncounterDescription_ID', 'EncounterDescription', "[Select]", $blank);
-            echo form_dropdown('EncounterDescription_ID', $option, form_value('EncounterDescription_ID', $dt), 'class = "form-control"' . disabled(form_value('Patient_ID', $patient)));
-            ?>
+            $option = option_select($encounter_type, 'EncounterDescription_ID', 'EncounterDescription', "[Select]", $blank);
+            echo form_dropdown('EncounterDescription_ID', $option, set_value('EncounterDescription_ID', 0), 'class = "form-control"' . disabled(form_value('Patient_ID', $patient)));
+            ?> -->
           </div>
           <?php
           echo form_error('EncounterDescription_ID');
@@ -199,7 +203,12 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
           <?php echo form_error('Notes'); ?>
         </div>
       </div> 
-    </div><!-- /widget-main -->
-  </div><!-- /widget-body -->
+    </div>
+  </div>
 </div>
 
+<script>
+  window.onload = function() {
+    document.forms['appointment_create_form'].submit();
+  }
+</script>

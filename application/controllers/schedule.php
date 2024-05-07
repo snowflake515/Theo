@@ -114,6 +114,7 @@ class Schedule extends CI_Controller {
   }
 
   function appointment_create() {
+    log_message('error' , 'appointment_create!!');
     $this->form_validation->set_rules($this->AppointmentModel->validation_create());
     $this->form_validation->set_error_delimiters(ERRORS_STYLE_OPEN, ERRORS_STYLE_END);
     if ($this->form_validation->run() == FALSE) {
