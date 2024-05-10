@@ -1,9 +1,9 @@
-<div class="page-header" hidden>
+<div class="page-header">
   <h1>
     Add appointment
   </h1>
 </div>
-<form class="form-horizontal" role="form" method="post" id="appointment_create_form" hidden action="<?php echo site_url('schedule/appointment_create') ?>" accept-charset="UTF-8">
+<form class="form-horizontal" role="form" method="post" id="appointment_create_form" action="<?php echo site_url('schedule/appointment_create') ?>" accept-charset="UTF-8">
   <?php $this->load->view('schedule/appointment_form'); ?>
   <br/>
   <div class="form-group">

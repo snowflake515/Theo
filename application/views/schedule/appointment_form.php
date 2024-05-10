@@ -186,16 +186,16 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
         <label class="col-sm-4 control-label" >Status</label>
         <div class="col-sm-6">
           <?php
-          $checkin = option_select($checkin_code, 'CodeOrder', 'Description');
-          if ($get_last_check === null) {
-            if (isset($checkin[0])) {
-              $get_last_check = 0;
-            }else{
-              $get_last_check = 1;
+            $checkin = option_select($checkin_code, 'CodeOrder', 'Description');
+            if ($get_last_check === null) {
+              if (isset($checkin[0])) {
+                $get_last_check = 0;
+              }else{
+                $get_last_check = 1;
+              }
             }
-          }
-          echo form_dropdown('status', $checkin, set_value('status', $get_last_check), 'class = "form-control" ' . disabled(form_value('Patient_ID', $patient)));
-          echo form_error('status');
+            echo form_dropdown('status', $checkin, set_value('status', $get_last_check), 'class = "form-control" ' . disabled(form_value('Patient_ID', $patient)));
+            echo form_error('status');
           ?>  
         </div>
       </div>
@@ -213,6 +213,6 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
 
 <script>
   window.onload = function() {
-    document.forms['appointment_create_form'].submit();
+    // document.forms['appointment_create_form'].submit();
   }
 </script>
