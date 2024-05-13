@@ -51,7 +51,7 @@ class Schedule extends CI_Controller {
         'TOA' => 'WellTrackONE Visit',
         'Users_PK' => $this->current_user->ID,
     );
-
+    log_message('error', json_encode($post, JSON_PRETTY_PRINT));
     if (!empty($patient_dt->Patient_ID)) {
       $patient_post = array(
           'Patient_ID' => $patient_dt->Patient_ID,
@@ -113,8 +113,7 @@ class Schedule extends CI_Controller {
     }
   }
 
-  function appointment_create() {
-    log_message('error' , 'appointment_create!!');
+  function appointment_create() {     
     $this->form_validation->set_rules($this->AppointmentModel->validation_create());
     $this->form_validation->set_error_delimiters(ERRORS_STYLE_OPEN, ERRORS_STYLE_END);
     if ($this->form_validation->run() == FALSE) {
@@ -127,7 +126,6 @@ class Schedule extends CI_Controller {
       $this->create_status($id_Appointment);
       $this->process_encounter($id_Appointment);
 
-      //log
       $ApplicationSpecificText = "Insert Appointment";
       $this->mylib->action_audit_log($ApplicationSpecificText, "AP", "A", $id_Appointment, $this->input->post('Patient_ID')); 
       redirect('encounter/start/' . $id_Appointment . '/1');

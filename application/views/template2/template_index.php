@@ -1,14 +1,15 @@
 <?php
-$id_appt = $encounter->Appointments_ID;
-//$con = "AND ((TML1_Org_ID = 0 and  TML1_Theo_Default = 1) OR (TML1_Org_ID = $id_org))";
+  $id_appt = $encounter->Appointments_ID;
 
- 
+  $con = " (TML1_Org_ID = $id_org)";
+  $hidden = '(Hidden = 0 OR Hidden IS NULL)';
+  $tml1_ids = 'TML1_Id IN (select TML1_ID from [Wellness_eCastEMR_Data].[dbo].[TabletInput] where Encounter_ID =  '.$encounter->Encounter_ID.' GROUP BY TML1_ID )';
+  
+  $tml1 = $this->Tml1Model->get_where( $con .' AND ('.$hidden.' OR '.$tml1_ids.')')->result();
 
-$con = " (TML1_Org_ID = $id_org)";
-$hidden = '(Hidden = 0 OR Hidden IS NULL)';
-$tml1_ids = 'TML1_Id IN (select TML1_ID from [Wellness_eCastEMR_Data].[dbo].[TabletInput] where Encounter_ID =  '.$encounter->Encounter_ID.' GROUP BY TML1_ID )';
- 
-$tml1 = $this->Tml1Model->get_where( $con .' AND ('.$hidden.' OR '.$tml1_ids.')')->result();
+  // log_message('error', $encounter->Encounter_ID);
+  // log_message('error', $id_appt);
+
 ?>
 <div class="page-header">
   <h1>
@@ -28,6 +29,12 @@ $tml1 = $this->Tml1Model->get_where( $con .' AND ('.$hidden.' OR '.$tml1_ids.')'
             <div class="form-group">
               <label class="col-md-3 control-label" style="font-size: 24px;">Template</label>
               <div class="col-md-9 ">
+                <input type="hidden" name="app_id" id="app_id" value="<?php echo $id_appt ?>">
+                <input type="hidden" name="en_id" id="en_id" value="<?php echo $encounter->Encounter_ID ?>">
+                <input type="hidden" name="pa_id" id="pa_id" value="<?php echo $encounter->Patient_ID ?>">
+                <input type="hidden" name="pro_id" id="pro_id" value="<?php echo $encounter->Provider_ID ?>">
+                <input type="hidden" name="org_id" id="org_id" value="<?php echo $id_org ?>">
+                <input type="hidden" name="end_id" id="end_id" value="<?php echo $encounter->EncounterDescription_ID ?>">
                 <input type="hidden" name="Encounter_ID" id="Encounter_ID" value="<?php echo $Encounter_ID ?>">
                 <input type="hidden" name="Appointment_ID" id="Appointment_ID" value="<?php echo $id_appt ?>">
                 <?php
@@ -195,11 +202,8 @@ $tml1 = $this->Tml1Model->get_where( $con .' AND ('.$hidden.' OR '.$tml1_ids.')'
 
   <p>
   <a onclick="onBack()" class="btn btn-default btn-sm"><i class="icon icon-arrow-left"></i>&nbsp;&nbsp; Back</a>
-  <a onclick="onSave()" id="btn-sv" class="btn btn-primary btn-sm hide"><i class="icon icon-save"></i>&nbsp;&nbsp; Save</a>
+  <a onclick="onSave()" id="btn-sv" class="btn btn-primary btn-sm hide" ><i class="icon icon-save"></i>&nbsp;&nbsp; Save</a>
     <?php
-    // echo anchor('encounter/start/' . $id_appt, '<i class="icon icon-arrow-left"></i>&nbsp;&nbsp; Back', array('class' => 'btn btn-default btn-sm'));
-    // echo anchor('clinical_trigger/encounter/'.$encounter->Encounter_ID, '<i class="icon icon-save"></i>&nbsp;&nbsp; Save', array('id'=> 'btn-sv', 'class' => 'btn btn-primary btn-sm hide'));
-    // echo anchor('template_v2/generate_careplan/'.$encounter->Encounter_ID, '<i class="icon icon-print"></i>&nbsp;&nbsp; Generate CarePLan', array('id'=> 'btn-gp', 'target' => '_blank', 'class' => 'btn btn-success btn-sm hide', 'originurl' => site_url('template_v2/generate_careplan/'.$encounter->Encounter_ID)));
     ?>
   </p>
 

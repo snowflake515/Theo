@@ -43,14 +43,6 @@
   }
 
   .cstm-cb input[type="radio"]:checked+span .icon-circle{
-    /*    font-size: 10px;
-        border: 2px solid #428bca;
-        border-radius: 50%;
-        width: 17px;
-        height: 17px;
-        padding: 1px;
-        position: relative;
-        top: -3px;*/
   }
 
   .wrap-tml-con{
@@ -144,11 +136,14 @@
 
 </style>
 <script>
+  var flag = 0;
   function onSave() {
     $('#digitPassword').modal('show');
+    flag = 1;
   }
   function onBack() {
     $('#digitPassword').modal('show');
+    flag = 0;
   }
   var site_url = '<?php echo site_url() ?>/';
 
@@ -208,52 +203,9 @@
           }
       });
 	  }
-    // else{
-    //   var data = JSON.parse(localStorage.getItem('data'));
-    //   $('#wrap_tml2').html(data.tml2);
-    //   $('#wrap_tml3').html(data.tml3);
-    
-    //   var phq2 = data.phq2_total;
-        
-    //   check_phq(phq2); 
-    //   open_loading(false);
-    //   $('.msg-notif').addClass('hide');
-    //   init_mask();
-    //   //show or hide btn save
-    //   if(data.tml3){
-    //     $('#btn-sv').removeClass('hide');
-    //   }else{
-    //     $('#btn-sv').addClass('hide');
-    //   }
-
-    //   if(data.theo_session_id){
-    //     $('#btn-gp').removeClass('hide');
-    //     $('#btn-gp').attr('href', $('#btn-gp').attr('originurl') +'/'+ data.theo_session_id);
-    //   }else{
-    //     $('#btn-gp').addClass('hide');
-    //   }
-    // }
   }
 
   function change_new_tml2(el) {
-    // var $tml2_checked = [];
-    // $('input[type="checkbox"].tml2_v:checked').each(function () {
-    //   $tml2_checked.push($(this).val())
-    // });
-    //open_loading(true);
-    // $.ajax({
-    //   type: "POST",
-    //   url: site_url + "template_v2/change_tml2",
-    //   data: {tml1_ID: $('#TML1_ID').val(), tml2_arr: $tml2_checked.join(','), Encounter_ID: $('#Encounter_ID').val()},
-    //   success: function (data) {
-    //     $('#wrap_tml3').html(data.tml3);
-    //     open_loading(false);
-    //     init_mask();
-    //   },
-    //   error: function (ress, status, error) {
-    //     my_handle_error(ress)
-    //   }
-    // });
     var prefix = '#tml2-wrap';
     var id = $(el).val();
     var $target =prefix+'-'+id;
@@ -487,34 +439,66 @@
   let closeBtn =
     document.getElementById("close");
 
-    function onPIN() {
-      if (!pinInput || !pinInput.value || pinInput.value === "" ) {
-        alert( "Please enter a pin first");
-        pinInput.value = "";
-        return;
-      }
-       
-      $.ajax({
-          url: mysite + "/user_password/check_pin", 
-          type: 'POST',
-          data: {
-            pin: pinInput.value
-          }, 
-          success: function(data) {
-            if (data === 'true') {
-              window.location.href = site_url + 'encounter/start/' + $('#Appointment_ID').val();
-              return;
+  function onPIN() {
+    if (!pinInput || !pinInput.value || pinInput.value === "" ) {
+      alert( "Please enter a pin first");
+      pinInput.value = "";
+      return;
+    }
+    $.ajax({
+        url: mysite + "/user_password/check_pin", 
+        type: 'POST',
+        data: {
+          pin: pinInput.value
+        }, 
+        success: function(data) {
+          if (data === 'true') {
+            if (flag == 1) {
+              saveData();
             }else{
-              alert( "Please enter your pin correctly!");
-              pinInput.value = "";
-              return;
+              window.location.href = site_url + 'encounter/start/' + $('#Appointment_ID').val();
             }
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-              console.error('Error: ' + textStatus, errorThrown);
+            return;
+          }else{
+            alert( "Please enter your pin correctly!");
+            pinInput.value = "";
+            return;
           }
-      });
-    } 
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error: ' + textStatus, errorThrown);
+        }
+    });
+  }
+    
+  function saveData() {
+    $.ajax({
+        url: mysite + "/clinical_trigger/save_update_data", 
+        type: 'POST',
+        data: {
+          app_id: $('#app_id').val(),
+          en_id: $('#en_id').val(),
+          pa_id: $('#pa_id').val(),
+          pro_id: $('#pro_id').val(),
+          org_id: $('#org_id').val(),
+          end_id: $('#end_id').val(),
+        }, 
+        success: function(data) {
+          console.log($('#app_id').val(), $('#en_id').val());
+          if (data == 1) {
+            window.location.href = site_url + 'encounter/start/' + $('#Appointment_ID').val();
+            return;
+          }else{
+            alert( "Fail! Please try again");
+            pinInput.value = "";
+            return;
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error: ' + textStatus, errorThrown);
+        }
+    });
+  }
 
   delBtn.addEventListener("click", () => {
     if (pinInput.value)

@@ -16,6 +16,14 @@ class ProviderReportModel extends CI_Model
       ->from('TheoResults')->get()->row();
     return $session;
   }
+  
+  function test_save($sql)
+  {
+    $this->db->trans_begin();
+    $this->db->query($sql);
+    $this->db->trans_commit();
+    return true;
+  }
 
   function prepare_encounter($session, $tml1, $current_user)
   {
@@ -216,9 +224,6 @@ class ProviderReportModel extends CI_Model
     }
     return $id_encounter;
   }
-
-
-
 
   function bulk_template($tml1_id, $encounter_id, $session_id)
   {

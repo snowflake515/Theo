@@ -14,7 +14,6 @@ class Encounter extends CI_Controller {
   }
 
   public function start($id_appt = null, $flag = 0) {
-    log_message('error', $flag);
     $get_dt = $this->get_encounter_by_appt($id_appt);
     if($this->input->post('submit') == 'save'){
       $this->save_encounter($get_dt['dt'], $get_dt['appt']);
@@ -92,8 +91,6 @@ class Encounter extends CI_Controller {
     $url_footer = "./reports/footer/" . $patient->Patient_ID . ".html";
     file_put_contents($url_footer, $html, LOCK_EX);
     $print_mode = $report->ReportCategory;
-    log_message('error', "=========================");
-    log_message('error', $print_mode);
     if ($print_mode == "PROVIDER") {
       $url_html = "./reports/" . $encounterKey . '.html';
       $url_pdf = "./reports/" . $encounterKey . '.pdf';

@@ -9,6 +9,7 @@ class Clinical_trigger extends CI_Controller {
     parent::__construct();
     $this->current_user = $this->sessionlib->current_user();
     $this->self = $this->router->fetch_class();
+    $this->load->model('ProviderReportModel');
   }
 
   public function encounter($encounter_id = 0, $print = NULL) {
@@ -198,6 +199,62 @@ class Clinical_trigger extends CI_Controller {
     } else {
       //echo "Please Generate Report First!";
     }
+  }
+  
+  public function save_update_data() {
+    $app_id = $this->input->post('app_id');
+    $en_id = $this->input->post('en_id');
+    $pa_id = $this->input->post('pa_id');
+    $pro_id = $this->input->post('pro_id');
+    $org_id = $this->input->post('org_id');
+    $end_id = $this->input->post('end_id');
+
+    $sql = "
+        USE Wellness_eCastEMR_Data
+        DECLARE @Appointments_ID Int
+        DECLARE @Encounter_ID Int
+        DECLARE @Patient_ID Int
+        DECLARE @Provider_ID Int
+        DECLARE @Org_ID Int
+        DECLARE @TOA Varchar(50)
+        DECLARE @Notes Varchar(50)
+        DECLARE @PMSReason Varchar(50)
+        DECLARE @EncounterDescription_ID Int
+
+        SELECT  @Appointments_ID = $app_id
+        SELECT  @Encounter_ID =  $en_id
+        SELECT  @Patient_ID =   $pa_id
+        SELECT  @Provider_ID =  $pro_id
+        SELECT  @Org_ID =  $org_id
+        SELECT  @TOA   = 'AWV Visit (THEO II)'  
+        SELECT  @Notes  = 'Annual Wellness Visit'  
+        SELECT  @PMSReason  = 'AWV Visit (THEO II)'  
+        SELECT  @EncounterDescription_ID =  $end_id
+
+        SELECT  @EncounterDescription_ID  
+        FROM  Wellness_eCastEMR_Data.dbo.EncounterDescriptionList  
+        WHERE  Org_ID = @Org_ID AND Provider_ID = @Provider_ID
+
+        UPDATE  Wellness_eCastEMR_Data.dbo.Appointments
+        SET TOA = @TOA, Notes = @Notes, 
+        PMSReason = @PMSReason,
+        EncounterDescription_ID = @EncounterDescription_ID
+        WHERE 
+        Appointments_ID = @Appointments_ID
+
+        UPDATE Wellness_eCastEMR_Data.dbo.EncounterHistory   
+        SET EncounterDescription = @PMSReason,  
+        ChiefComplaint = @PMSReason, 
+        EncounterNotes = @Notes,   
+        PMSEncounter_Id = @PMSReason,    
+        EncounterDescription_ID = @EncounterDescription_ID  
+        WHERE   
+        Encounter_ID = @Encounter_ID
+
+    ";
+    $res = $this->ProviderReportModel->test_save($sql);
+    
+    echo $res;
   }
 
   private function insert_trgger_data($ecounter, $trigger) {
