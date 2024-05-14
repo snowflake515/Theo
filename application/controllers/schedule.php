@@ -167,6 +167,8 @@ class Schedule extends CI_Controller {
   }
 
   private function convert($date, $time) {
+    log_message('error', $date);
+    log_message('error', $time);
     $d_p = explode('-', $date);
     $date = $d_p[2] . '-' . $d_p[0] . '-' . $d_p[1];
     $date = new DateTime("$time $date");

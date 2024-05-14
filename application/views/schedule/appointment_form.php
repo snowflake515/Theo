@@ -63,13 +63,21 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
           if (intval($temp_time[1] % 5 != 0)) {
             if ((5 * (intval($temp_time[1] / 5) + 1)) < 10) {
               if (5 * (intval($temp_time[1] / 5) + 1) == 60) {
-                $t_time = strval(intval($temp_time[0]) + 1) . ":00";
+                if ((intval($temp_time[0]) + 1) >= 13) {
+                  $t_time = "0" . strval(intval($temp_time[0]) - 12) . ":00";
+                }else{
+                  $t_time = strval(intval($temp_time[0]) + 1) . ":00";
+                }
               }else{
                 $t_time = $temp_time[0] . ":0" . strval(5 * (intval($temp_time[1] / 5) + 1));
               }
             }else{
               if (5 * (intval($temp_time[1] / 5) + 1) == 60) {
-                $t_time = strval(intval($temp_time[0]) + 1) . ":00";
+                if ((intval($temp_time[0]) + 1) >= 13) {
+                  $t_time = "0" . strval(intval($temp_time[0]) - 12) . ":00";
+                }else{
+                  $t_time = strval(intval($temp_time[0]) + 1) . ":00";
+                }
               }else{
                 $t_time = $temp_time[0] . ":" . strval(5 * (intval($temp_time[1] / 5) + 1));
               }
@@ -110,19 +118,47 @@ $patient_ID = (!empty($patient->Patient_ID)) ? $patient->Patient_ID : NULL;
           if ((intval($temp_time1[1]) + 30) >= 60) {
             if ((intval($temp_time1[1]) - 30) < 10) {
               if ((intval($temp_time1[0]) + 1) < 10) {
-                $t_time = "0" + strval(intval($temp_time1[0]) + 1) . ":0" . strval(intval($temp_time1[1]) - 30);
+                if ((intval($temp_time1[0]) + 1) >= 13) {
+                  $t_time = "0" . strval(intval($temp_time1[0]) - 11) . ":0" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', 1);
+                }else{
+                  $t_time = "0" . strval(intval($temp_time1[0]) + 1) . ":0" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', 2);
+                }
               }else{
-                $t_time = strval(intval($temp_time1[0]) + 1) . ":0" . strval(intval($temp_time1[1]) - 30);
+                if ((intval($temp_time1[0]) + 1) >= 13) {
+                  $t_time = "0" . strval(intval($temp_time1[0]) - 11) . ":0" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', 3);
+                }else{
+                  $t_time = strval(intval($temp_time1[0]) + 1) . ":0" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', 4);
+                }
               }
             }else{
               if ((intval($temp_time1[0]) + 1) < 10) {
-                $t_time = "0" + strval(intval($temp_time1[0]) + 1) . ":" . strval(intval($temp_time1[1]) - 30);
+                if ((intval($temp_time1[0]) + 1) >= 13) {
+                  $t_time = "0" . strval(intval($temp_time1[0]) - 11) . ":" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', 5);
+                }else{
+                  $t_time = "0" . strval(intval($temp_time1[0]) + 1) . ":" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', $t_time);
+                }
               }else{
-                $t_time = strval(intval($temp_time1[0]) + 1) . ":" . strval(intval($temp_time1[1]) - 30);
+                if ((intval($temp_time1[0]) + 1) >= 13) {
+                  $t_time = "0" . strval(intval($temp_time1[0]) - 11) . ":" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', 7);
+                }else{
+                  $t_time = strval(intval($temp_time1[0]) + 1) . ":" . strval(intval($temp_time1[1]) - 30);
+                  log_message('error', 8);
+                }
               }
             }
           }else{
-            $t_time = strval($temp_time1[0]) . ":" . strval(intval($temp_time1[1]) + 30);
+            if (intval($temp_time1[0]) >= 13) {
+              $t_time = "0" . strval(intval($temp_time1[0]) - 12) . ":" . strval(intval($temp_time1[1]) + 30);
+            }else{
+              $t_time = strval($temp_time1[0]) . ":" . strval(intval($temp_time1[1]) + 30);
+            }
           }
           $t_time = $t_time . " " . explode(" ", date("h:i a"))[1];
           $time = (!empty($dt->ApptStop)) ? time_format($dt->ApptStop) : $t_time;
