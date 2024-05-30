@@ -228,6 +228,7 @@ class Encounter extends CI_Controller {
     }
 
     $html = $this->load->view($data['partial'], $data, TRUE);
+    log_message('error', $data['partial']);
 
     $q = array(
       'ID' => $dt->Encounter_ID,

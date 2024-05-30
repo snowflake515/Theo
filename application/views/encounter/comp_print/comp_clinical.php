@@ -94,8 +94,7 @@ ORDER BY CTH.SortOrder";
 
 $getAWACSScreening_num = $getAWACSScreening->num_rows();
 $getAWACSScreening_result = $getAWACSScreening->result();
-log_message('error', "=-----------------------------------------Clinical Tracks OKOKOK");
-log_message('error', $getAWACSScreening_num);
+
 if ($getAWACSScreening_num != 0) {
 
   $data['HeaderKey'] = $HeaderKey;

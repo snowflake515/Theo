@@ -7,9 +7,6 @@
   
   $tml1 = $this->Tml1Model->get_where( $con .' AND ('.$hidden.' OR '.$tml1_ids.')')->result();
 
-  // log_message('error', $encounter->Encounter_ID);
-  // log_message('error', $id_appt);
-
 ?>
 <div class="page-header">
   <h1>

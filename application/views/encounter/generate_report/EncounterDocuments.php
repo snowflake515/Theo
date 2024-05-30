@@ -1,7 +1,9 @@
 <?php
     if ($Field === 'CLINICAL') {
         $this->load->view('encounter/printClinical');
-    }else{
+    }elseif($Field === 'PATIENT'){
+        $this->load->view('encounter/printPatient');
+    } else{
         $this->load->view('encounter/printchartnotes');
     }
 ?>
