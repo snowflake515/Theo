@@ -210,13 +210,19 @@ if ($getAWACSScreening_num != 0) {
                   Age: &nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; width: 20%; text-decoration: underline; border-right: none; height: 22px; border-left: none; border-bottom: none; padding:2px;" valign="top">
-                <?php echo dob_to_age($dob_result->DOB)?>
+                <?php echo dob_to_age($dob_result->DOB);?>
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px;  border-right: none; height: 22px; width: 18%; border-left: none; border-bottom: none; padding:2px;" valign="top">
                   Blood Pressure: &nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; text-decoration: underline; border-bottom: none; height: 22px; border-left: none; padding:2px;" valign="top">
-                  <?php echo $getAWACSScreening_result[2]->PWValue; ?>&nbsp;,<?php echo $getAWACSScreening_result[3]->PWValue; ?>
+                  <?php 
+                  if (is_numeric($getAWACSScreening_result[2]->PWValue) && is_numeric($getAWACSScreening_result[3]->PWValue)) {
+                    echo $getAWACSScreening_result[2]->PWValue; ?>&nbsp;/<?php echo $getAWACSScreening_result[3]->PWValue; 
+                  }else{
+                    echo "N/A";
+                  }
+                  ?>
                 </td>
               </tr>
               <tr>
@@ -224,7 +230,13 @@ if ($getAWACSScreening_num != 0) {
                   Weight: &nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
-                  <?php echo $getAWACSScreening_result[0]->PWValue; ?>&nbsp;lbs
+                  <?php 
+                    if (is_numeric($getAWACSScreening_result[0]->PWValue) && intval($getAWACSScreening_result[0]->PWValue) != 0) {
+                      echo $getAWACSScreening_result[0]->PWValue . " lbs";
+                    }else{
+                      echo "N/A";
+                    }
+                  ?>&nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:0px; width: 17%; none;padding:2px;" valign="top">
                   
@@ -238,7 +250,13 @@ if ($getAWACSScreening_num != 0) {
                   Height: &nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
-                  <?php echo $getAWACSScreening_result[1]->PWValue; ?>&nbsp;inches
+                  <?php 
+                    if (is_numeric($getAWACSScreening_result[1]->PWValue) && intval($getAWACSScreening_result[1]->PWValue) != 0) {
+                      echo $getAWACSScreening_result[1]->PWValue . " inches";
+                    }else{
+                      echo "N/A";
+                    }
+                  ?>&nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:0px; width: 17%; none;padding:2px;" valign="top">
                   
@@ -252,7 +270,13 @@ if ($getAWACSScreening_num != 0) {
                   Body Mass Index (BMI): &nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
-                  <?php echo intval($getAWACSScreening_result[0]->PWValue / ($getAWACSScreening_result[1]->PWValue * $getAWACSScreening_result[1]->PWValue) * 703); ?>&nbsp;
+                  <?php 
+                  if (!is_numeric($getAWACSScreening_result[0]->PWValue) || intval($getAWACSScreening_result[0]->PWValue) == 0 || !is_numeric($getAWACSScreening_result[1]->PWValue) || intval($getAWACSScreening_result[1]->PWValue) == 0) {
+                    echo "N/A";
+                  }else{
+                    echo intval($getAWACSScreening_result[0]->PWValue / ($getAWACSScreening_result[1]->PWValue * $getAWACSScreening_result[1]->PWValue) * 703); 
+                  }
+                  ?>&nbsp;
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:0px; width: 17%; none;padding:2px;" valign="top">
                   
