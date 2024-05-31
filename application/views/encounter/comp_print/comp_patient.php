@@ -1,7 +1,7 @@
 <?php
-$sql1 = "DELETE FROM Wellness_DataArchive.dbo.PWHistory
+$sql1 = "
+DELETE FROM Wellness_DataArchive.dbo.PWHistory
 
-PRINT 'Setting up temp tables...'
 USE Wellness_eCastEMR_Data
 DROP Table Wellness_eCastEMR_Data.dbo.tempPWTBots
 SET ANSI_NULLS ON
@@ -13,7 +13,6 @@ CREATE TABLE Wellness_eCastEMR_Data.[dbo].[tempPWTBots](
 CREATE INDEX tempPWTBots_idx
   ON Wellness_eCastEMR_Data.dbo.tempPWTBots(TBot)
 
-PRINT 'Got the Encounter_ID and now filling up temp table...'
 SET ANSI_PADDING OFF
 
 DECLARE @Patient_ID INT, @Encounter_ID INT, @n INT, @max INT, 
@@ -22,7 +21,6 @@ DECLARE @Patient_ID INT, @Encounter_ID INT, @n INT, @max INT,
 SELECT @Encounter_ID	= $PrimaryKey
 SELECT @Patient_ID		= $PatientKey
 
-PRINT 'Setting PWHistory flags...'
 UPDATE Wellness_DataArchive.dbo.PWHistory
 SET Hidden		= 1 WHERE 
 Patient_ID		= @Patient_ID AND 
@@ -41,7 +39,7 @@ VALUES
 (3,@Patient_ID,@Encounter_ID,@TDate,0,'Systolic:  ',30,0),
 (4,@Patient_ID,@Encounter_ID,@TDate,0,'Diastolic: ',40,0)
 PRINT 'Now updating first 4 rows of PWHistory with correct vitals values...'
---- Weight
+
 UPDATE PWH
 SET PWH.PWValue = E3I.ETL3Input
 FROM Wellness_DataArchive.dbo.PWHistory PWH
@@ -53,7 +51,7 @@ WHERE PWH.PWMaster_ID = 1
 AND E1.Encounter_ID = @Encounter_ID
 AND T2.TML2_HeaderMaster_ID = 33
 AND T3.TML3_TBotMaster_ID = 424;
---- Height
+
 UPDATE PWH
 SET PWH.PWValue = E3I.ETL3Input
 FROM Wellness_DataArchive.dbo.PWHistory PWH
@@ -65,7 +63,7 @@ WHERE PWH.PWMaster_ID = 2
 AND E1.Encounter_ID = @Encounter_ID
 AND T2.TML2_HeaderMaster_ID = 33
 AND T3.TML3_TBotMaster_ID = 423;
---- Systolic
+
 UPDATE PWH
 SET PWH.PWValue = E3I.ETL3Input
 FROM Wellness_DataArchive.dbo.PWHistory PWH
@@ -77,7 +75,7 @@ WHERE PWH.PWMaster_ID = 3
 AND E1.Encounter_ID = @Encounter_ID
 AND T2.TML2_HeaderMaster_ID = 33
 AND T3.TML3_TBotMaster_ID = 425;
---- Diastolic
+
 UPDATE PWH
 SET PWH.PWValue = E3I.ETL3Input
 FROM Wellness_DataArchive.dbo.PWHistory PWH
@@ -90,44 +88,39 @@ AND E1.Encounter_ID = @Encounter_ID
 AND T2.TML2_HeaderMaster_ID = 33
 AND T3.TML3_TBotMaster_ID = 426;
 
-
-/* Mow insert rows into tempPWTBots */
-PRINT 'Setting values in tempPWTBots...'
 INSERT INTO Wellness_eCastEMR_Data.[dbo].[tempPWTBots]
 SELECT CONCAT(TM.TML3_TBotMaster_ID,'-',TM.TML3_TBotData) FROM Wellness_eCastEMR_Data.dbo.ETL3 ET
 JOIN Wellness_eCastEMR_Template.dbo.TML3 TM ON ET.TML3_ID = TM.TML3_ID
 JOIN eCastMaster.dbo.TBotMaster TB ON TM.TML3_TBotMaster_ID = TB.TBotMaster_ID
 WHERE ET.Encounter_ID	= @Encounter_ID
 
-PRINT 'Starting the loop through PWMaster...'
-SELECT @n = 5  
+SELECT @n = 5
 SELECT @max = COUNT(*) FROM Wellness_DataArchive.dbo.PWMaster
 WHILE @n <= @max
   BEGIN
-    PRINT 'Looping through PWMaster...'
 	  SELECT  
 	    @PWMaster_ID		= PWMaster_ID,
-		@PWCategory			= Category,
-		@PWService			= Service,
-		@PWCode 			= Code,
-		@PWBenefit			= Benefit,
-		@PWNeeded			= 0,
-		@PWSortOrder		= SortOrder
+      @PWCategory			= Category,
+      @PWService			= Service,
+      @PWCode 			  = Code,
+      @PWBenefit			= Benefit,
+      @PWNeeded			  = 0,
+      @PWSortOrder		= SortOrder
 		FROM Wellness_DataArchive.dbo.PWMaster WHERE PWMaster_ID = @n
-	    SELECT TBot FROM Wellness_DataArchive.dbo.PWMasterTBots TB WHERE TB.PWMaster_ID = @n
-        INTERSECT
-        SELECT TBot FROM Wellness_eCastEMR_Data.dbo.TempPWTBots TTB
+	  SELECT TBot FROM Wellness_DataArchive.dbo.PWMasterTBots TB WHERE TB.PWMaster_ID = @n
+      INTERSECT
+    SELECT TBot FROM Wellness_eCastEMR_Data.dbo.TempPWTBots TTB
 		IF @@ROWCOUNT <> 0 
 		  BEGIN 
 		    SELECT @PWNeeded = 1
 		  END
-      INSERT INTO Wellness_DataArchive.dbo.PWHistory
-      (PWMaster_ID,Patient_ID,Encounter_ID,PWDate,PWNeeded,PWValue,SortOrder,Hidden)
-      VALUES
-      (@PWMaster_ID,@Patient_ID,@Encounter_ID,@TDate,@PWNeeded,'',@PWSortOrder,0)
-      SELECT @n = @n + 1 
-      END
-    ";
+    INSERT INTO Wellness_DataArchive.dbo.PWHistory
+    (PWMaster_ID,Patient_ID,Encounter_ID,PWDate,PWNeeded,PWValue,SortOrder,Hidden)
+    VALUES
+    (@PWMaster_ID,@Patient_ID,@Encounter_ID,@TDate,@PWNeeded,'',@PWSortOrder,0)
+    SELECT @n = @n + 1 
+  END
+";
 
 $sql = "	SELECT PWM.PWMaster_ID,PWM.Category,PWM.Service,PWM.Code,PWM.Benefit,PWH.PWValue,PWH.PWNeeded,PWM.SortOrder
 FROM Wellness_DataArchive.dbo.PWHistory PWH
@@ -147,30 +140,6 @@ $sql2 = "SELECT DOB FROM Wellness_eCastEMR_Data.dbo.PatientProfile where Patient
   log_message('error', "ididid==>>>");
   log_message('error', $PatientKey);
   log_message('error', $PrimaryKey);
-
-// $res = $this->db->query($sql1, false);
-// $result = odbc_exec($connection, $query);
-// odbc_free_result();
-// $res = $this->db->query($sql, false);
-// // $res = $this->db->query($sql1 . $sql, TRUE);
-// log_message('error', "res");
-// // log_message('error', $res);
-// $methods = get_class_methods($getAWACSScreening);
-
-// foreach ($methods as $method) {
-//   log_message("error", $method);
-//   log_message('error', json_encode($getAWACSScreening->$method()));
-// }
-
-// $getAWACSScreening = $this->ReportModel->data_db->query($sql1 . $sql);
-
-// $methods = get_class_methods($res);
-
-// foreach ($methods as $method) {
-//   log_message("error", $method);
-//   log_message('error', json_encode($res->$method()));
-  
-// }
 
 $getAWACSScreening_num = $getAWACSScreening->num_rows();
 $getAWACSScreening_result = $getAWACSScreening->result();
@@ -199,7 +168,7 @@ if ($getAWACSScreening_num != 0) {
       </tr>
       <tr>
         <td>
-          <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 20px; width: 6.75in; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+          <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 20px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
               <tr>
                 <td nowrap align="left" colspan="4" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                   Your Key Vital Signs
@@ -288,7 +257,7 @@ if ($getAWACSScreening_num != 0) {
           </table>
           <?php foreach ($getAWACSScreening_result as $index => $val) { ?>
             <?php if ($index == 4) { ?>
-              <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 10px; width: 6.75in; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
                 <tr>
                   <td nowrap align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     Medlcare Recommended
@@ -311,22 +280,22 @@ if ($getAWACSScreening_num != 0) {
                 </tr>
             <?php } ?>
             <?php if ($index == 15) { ?>
-              <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 10px; width: 6.75in; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
                 <tr>
-                  <td nowrap align="left" colspan="4" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     Social/Behavioral Screenings
                   </td>
                 </tr>
             <?php } ?>
             <?php if ($index == 20) { ?>
-              <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 10px; width: 6.75in; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
                 <tr>
-                  <td nowrap align="left" colspan="4" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     Your Additional Risk Factors
                   </td>
                 </tr>
             <?php } ?>
-               <?php if ($index >= 4) { ?>
+               <?php if ($index >= 4 && $index < 24) { ?>
                 <tr>
                   <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-right: none;padding:2px;" valign="center">
                     <?php echo $val->Category; ?>&nbsp;
