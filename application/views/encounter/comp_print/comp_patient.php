@@ -280,17 +280,17 @@ if ($getAWACSScreening_num != 0) {
                 </tr>
             <?php } ?>
             <?php if ($index == 15) { ?>
-              <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
-                <tr>
-                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
+                <tr style="margin-top: 10px;">
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:15px; padding-bottom: 5px; color: #35A7CF" valign="top">
                     Social/Behavioral Screenings
                   </td>
                 </tr>
             <?php } ?>
             <?php if ($index == 20) { ?>
-              <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
-                <tr>
-                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
+                <tr style="margin-top: 10px;">
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:15px; padding-bottom: 5px; color: #35A7CF" valign="top">
                     Your Additional Risk Factors
                   </td>
                 </tr>
@@ -328,12 +328,10 @@ if ($getAWACSScreening_num != 0) {
                     ?>&nbsp;
                   </td>
                 </tr>
-              <?php } ?>
-            <?php if ($index == 14 || $index == 19 || $index == 23) { ?>
-            </table>
-            <?php } ?>
-            
-          <?php } ?>
-          <?php
-    }
+              <?php } ?>  
+      <?php } ?>
+            </table> 
+          </table>  
+    <?php
+}
 ?>
