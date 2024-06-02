@@ -294,13 +294,11 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
             Patient Name: <b><?php echo $HeaderData_row->FirstName." ".$HeaderData_row->MiddleName." ".$HeaderData_row->LastName; ?></b>
           </td>
         </tr>
-        <tr><td><br></td></tr>
         <tr>
           <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 15px" valign="top">
             Date: <b><?php echo date('F d, Y', strtotime($HeaderData_row->EncounterDate)); ?></b>
           </td>
         </tr>
-        <tr><td><br></td></tr>
         <tr>
           <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 15px" valign="top">
             Healthcare Provider: <b>

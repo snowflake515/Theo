@@ -158,14 +158,11 @@ if ($getAWACSScreening_num != 0) {
   
   $data['data_db'] = $data_db;
   $BodyFontInfo = getBodyFontInfo($data, $HeaderKey);
-  $DefaultStyle = "color: #" . $BodyFontInfo['FontColor'] . "; font-size: 14  " .  "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . $BodyFontInfo['FontFace'] . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
-  $ColumnHeaderStyle = "color: #" . $BodyFontInfo['FontColor'] . "; font-size: 14 " .  "px; font-weight: bold; font-family: " . $BodyFontInfo['FontFace'] . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
+  $DefaultStyle = "color: #" . $BodyFontInfo['FontColor'] . "; font-size: 13  " .  "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
+  $ColumnHeaderStyle = "color: #" . $BodyFontInfo['FontColor'] . "; font-size: 14 " .  "px; font-weight: bold; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
   ?>
   <table cellpadding="0" cellspacing="0" style="width: 7.0in;">
     <tr>
-      <td width="7">&nbsp;</td>
-    <cfoutput>
-      </tr>
       <tr>
         <td>
           <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 20px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
@@ -295,7 +292,15 @@ if ($getAWACSScreening_num != 0) {
                   </td>
                 </tr>
             <?php } ?>
-               <?php if ($index >= 4 && $index < 24) { ?>
+            <?php if ($index == 24) { ?>
+              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
+                <tr style="margin-top: 10px;">
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:15px; padding-bottom: 5px; color: #35A7CF" valign="top">
+                    Advance Care Planning
+                  </td>
+                </tr>
+            <?php } ?>
+               <?php if ($index >= 4 && $index < 25) { ?>
                 <tr>
                   <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-right: none;padding:2px;" valign="center">
                     <?php echo $val->Category; ?>&nbsp;
@@ -318,12 +323,12 @@ if ($getAWACSScreening_num != 0) {
                     }
                     ?>&nbsp;
                   </td>
-                  <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-left: none; padding:2px; width: 55px;" valign="center">
+                  <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-left: none; padding:0px; width: 59px; font-family: fantasy; " valign="center">
                     <?php 
                     if ($val->PWNeeded == 0) {
-                      echo 'No <label><input type="checkbox" class="checkBox" style="width: 20px; height: 20px;" onclick="return false" checked></label>';
+                      echo ' <label style="font-family: sans-serif">No<input type="checkbox" class="checkBox" style="width: 20px; height: 20px;" onclick="return false" checked></label>';
                     }else{
-                      echo 'No <label><input type="checkbox" class="checkBox" style="width: 20px; height: 20px;" onclick="return false"></label>';
+                      echo ' <label style="font-family: sans-serif">No<input type="checkbox" class="checkBox" style="width: 20px; height: 20px;" onclick="return false"></label>';
                     }
                     ?>&nbsp;
                   </td>
