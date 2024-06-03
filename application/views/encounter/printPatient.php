@@ -45,7 +45,7 @@
     <title><?php echo $title?></title>
     <link rel="shortcut icon" href="<?php echo base_url('assets/ace/img/faicon.ico') ?>">
     <style type="text/css" media="all">
-      body {margin-top: 0.25in;
+      body {margin-top: 0.2in;
             margin-left: 0in;
             margin-right: 0.25in;
             margin-bottom: 0.25in;
@@ -176,7 +176,6 @@
       $EncounterConfig_Id = $DefaultConfig_row->EncounterConfig_Id;
     }
 ?>
-    <br/>
 <?php
 
 

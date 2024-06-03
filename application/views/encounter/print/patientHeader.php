@@ -258,15 +258,15 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
       }
 
       if($CustomConfig_row->PatientName != 0){
-        $DisplayInfo = $DisplayInfo."&nbsp;".$HeaderData_row->LastName."<br/>";
+        $DisplayInfo = $DisplayInfo."&nbsp;".$HeaderData_row->LastName;
         $NeedLineBreaks = 1;
       }
       if($HeaderData_row->Addr1 != "" && $CustomConfig_row->PatientAddress != 0){
-        $DisplayInfo = $DisplayInfo." ".$HeaderData_row->Addr1."<br/>";
+        $DisplayInfo = $DisplayInfo." ".$HeaderData_row->Addr1;
         $NeedLineBreaks = 1;
       }
        if($HeaderData_row->Addr2 != "" && $CustomConfig_row->PatientAddress != 0){
-        $DisplayInfo = $DisplayInfo." ".$HeaderData_row->Addr2."<br/>";
+        $DisplayInfo = $DisplayInfo." ".$HeaderData_row->Addr2;
         $NeedLineBreaks = 1;
       }
        if($HeaderData_row->City != "" && $CustomConfig_row->PatientCity != 0){

@@ -165,24 +165,24 @@ if ($getAWACSScreening_num != 0) {
     <tr>
       <tr>
         <td>
-          <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+          <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
               <tr>
                 <td nowrap align="left" colspan="4" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                  <label style="font-size: 15px;">Your Key Vital Signs</label>
+                  <label style="font-size: 14px;">Your Key Vital Signs</label>
                 </td>
               </tr>
               <tr style="width: 22px;">
                 <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; width: 25%; border-width:1px; border-bottom: none; border-right: none; padding:2px;" valign="top">
-                  <label style="font-size: 14px;">Age: &nbsp;</label>
+                  <label style="font-size: 13.5px;">Age: &nbsp;</label>
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; width: 20%; text-decoration: underline; border-right: none; border-left: none; border-bottom: none; padding:2px;" valign="top">
-                  <label style="font-size: 14px;"><?php echo dob_to_age($dob_result->DOB);?></label>
+                  <label style="font-size: 13.5px;"><?php echo dob_to_age($dob_result->DOB);?></label>
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px;  border-right: none; width: 18%; border-left: none; border-bottom: none; padding:2px;" valign="top">
-                  <label style="font-size: 14px;">Blood Pressure: &nbsp;</label>
+                  <label style="font-size: 13.5px;">Blood Pressure: &nbsp;</label>
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; text-decoration: underline; border-bottom: none; border-left: none; padding:2px;" valign="top">
-                  <label style="font-size: 14px;">
+                  <label style="font-size: 13.5px;">
                     <?php 
                       if (is_numeric($getAWACSScreening_result[2]->PWValue) && is_numeric($getAWACSScreening_result[3]->PWValue)) {
                         echo $getAWACSScreening_result[2]->PWValue; ?>&nbsp;/<?php echo $getAWACSScreening_result[3]->PWValue; 
@@ -195,10 +195,10 @@ if ($getAWACSScreening_num != 0) {
               </tr>
               <tr>
                 <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; width: 25%;  border-width:1px; border-bottom: none; border-top: none; border-right: none; padding:2px;" valign="center">
-                  <label style="font-size: 14px;">Weight: &nbsp;</label>
+                  <label style="font-size: 13.5px;">Weight: &nbsp;</label>
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
-                  <label style="font-size: 14px;">
+                  <label style="font-size: 13.5px;">
                     <?php 
                       if (is_numeric($getAWACSScreening_result[0]->PWValue) && intval($getAWACSScreening_result[0]->PWValue) != 0) {
                         echo $getAWACSScreening_result[0]->PWValue . " lbs";
@@ -217,10 +217,10 @@ if ($getAWACSScreening_num != 0) {
               </tr>
               <tr>
                 <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; width: 25%;  border-width:1px; border-bottom: none; border-top: none; border-right: none;padding:2px;" valign="center">
-                  <label style="font-size: 14px;">Height: &nbsp;</label>
+                  <label style="font-size: 13.5px;">Height: &nbsp;</label>
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
-                  <label style="font-size: 14px;">
+                  <label style="font-size: 13.5px;">
                     <?php 
                       if (is_numeric($getAWACSScreening_result[1]->PWValue) && intval($getAWACSScreening_result[1]->PWValue) != 0) {
                         echo $getAWACSScreening_result[1]->PWValue . " inches";
@@ -239,10 +239,10 @@ if ($getAWACSScreening_num != 0) {
               </tr>
               <tr>
                 <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; width: 25%;  border-width:1px; border-bottom: none; border-top: none; border-right: none;padding:2px;" valign="center">
-                  <label style="font-size: 14px;">Body Mass Index (BMI): &nbsp;</label>
+                  <label style="font-size: 13.5px;">Body Mass Index (BMI): &nbsp;</label>
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
-                  <label style="font-size: 14px;">
+                  <label style="font-size: 13.5px;">
                     <?php 
                     if (!is_numeric($getAWACSScreening_result[0]->PWValue) || intval($getAWACSScreening_result[0]->PWValue) == 0 || !is_numeric($getAWACSScreening_result[1]->PWValue) || intval($getAWACSScreening_result[1]->PWValue) == 0) {
                       echo "N/A";
@@ -262,82 +262,106 @@ if ($getAWACSScreening_num != 0) {
           </table>
           <?php foreach ($getAWACSScreening_result as $index => $val) { ?>
             <?php if ($index == 4) { ?>
-              <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
                 <tr>
                   <td nowrap align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Medlcare Recommended</label>
+                    <label style="font-size: 14px;">Medlcare Recommended</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Preventive Services</label>
+                    <label style="font-size: 14px;">Services</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Code</label>
+                    <label style="font-size: 14px;">Code</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Your Benefit/Guldellnes</label>
+                    <label style="font-size: 14px;">Your Benefit/Guldellnes</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Needed</label>
+                    <label style="font-size: 14px;">Needed</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">This year*</label>
+                    <label style="font-size: 14px;"></label>
                   </td>
                 </tr>
             <?php } ?>
             <?php if ($index == 15) { ?>
               <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
-                <tr style="margin-top: 5px;">
-                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:15px; padding-bottom: 5px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Social/Behavioral Screenings</label>
+                <tr>
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:5px; color: #35A7CF" valign="top">
+                    <label style="font-size: 14px;">Social/Behavioral Screenings</label>
                   </td>
                 </tr>
             <?php } ?>
             <?php if ($index == 20) { ?>
               <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
-                <tr style="margin-top: 5px;">
-                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:15px; padding-bottom: 5px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Your Additional Risk Factors</label>
+                <tr>
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:5px; color: #35A7CF" valign="top">
+                    <label style="font-size: 14px;">Your Additional Risk Factors</label>
                   </td>
                 </tr>
             <?php } ?>
             <?php if ($index == 24) { ?>
               <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
-                <tr style="margin-top: 5px;">
-                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:15px; padding-bottom: 5px; color: #35A7CF" valign="top">
-                    <label style="font-size: 15px;">Advance Care Planning</label>
+                <tr>
+                  <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:5px; color: #35A7CF" valign="top">
+                    <label style="font-size: 14px;">Advance Care Planning</label>
                   </td>
                 </tr>
             <?php } ?>
                <?php if ($index >= 4 && $index < 25) { ?>
                 <tr>
                   <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-right: none;padding:2px;" valign="center">
-                    <label style="font-size: 14px;"><?php echo $val->Category; ?>&nbsp;</label>
+                    <label style="font-size: 13.5px;"><?php echo $val->Category; ?>&nbsp;</label>
                   </td>
                   <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-left: none; border-right: none;padding:2px;" valign="center">
-                    <label style="font-size: 14px;"><?php echo $val->Service; ?>&nbsp;</label>
+                    <label style="font-size: 13.5px;"><?php echo $val->Service; ?>&nbsp;</label>
                   </td>
                   <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-left: none; border-right: none;padding:2px;" valign="center">
-                    <label style="font-size: 14px;"><?php echo $val->Code; ?>&nbsp;</label>
+                    <label style="font-size: 13.5px;"><?php echo $val->Code; ?>&nbsp;</label>
                   </td>
                   <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-left: none; border-right: none;padding:2px;" valign="center">
-                    <label style="font-size: 14px;"><?php echo $val->Benefit; ?>&nbsp;</label>
+                    <label style="font-size: 13.5px;"><?php echo $val->Benefit; ?>&nbsp;</label>
                   </td>
                   <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-left: none; border-right: none; padding:2px; width: 59px;" valign="center">
                     <?php 
-                    if ($val->PWNeeded == 1) {
-                      echo '<label style="font-size: 14px;">Yes<input type="checkbox" class="checkBox" style="width: 14px; height: 14px;" onclick="return false" checked></label>';
+                    if ($val->Category == "Weight/BMI") {
+                      if ((is_numeric($getAWACSScreening_result[0]->PWValue) && intval($getAWACSScreening_result[0]->PWValue) != 0 && is_numeric($getAWACSScreening_result[1]->PWValue) && intval($getAWACSScreening_result[1]->PWValue) != 0)) {
+                        if (($getAWACSScreening_result[0]->PWValue / ($getAWACSScreening_result[1]->PWValue * $getAWACSScreening_result[1]->PWValue) * 703) >= 25) {
+                          echo '<label style="font-size: 13.5px;">Yes<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false" checked></label>';
+                        }else{
+                          echo '<label style="font-size: 13.5px;">Yes<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false"></label>';
+                        }
+                      }else{
+                        echo '<label style="font-size: 13.5px;">Yes<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false"></label>';
+                      } 
                     }else{
-                      echo '<label style="font-size: 14px;">Yes<input type="checkbox" class="checkBox" style="width: 14px; height: 14px;" onclick="return false"></label>';
-                    }
+                      if ($val->PWNeeded === '1') {
+                        echo '<label style="font-size: 13.5px;">Yes<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false" checked></label>';
+                      }else{
+                        echo '<label style="font-size: 13.5px;">Yes<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false"></label>';
+                      }
+                    }                   
                     ?>&nbsp;
                   </td>
                   <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-left: none; padding:0px; width: 59px; font-family: fantasy; " valign="center">
                     <?php 
-                    if ($val->PWNeeded == 0) {
-                      echo ' <label style="font-family: sans-serif; font-size: 14px;">No<input type="checkbox" class="checkBox" style="width: 14px; height: 14px;" onclick="return false" checked></label>';
+                    if ($val->Category == "Weight/BMI") {
+                      if ((is_numeric($getAWACSScreening_result[0]->PWValue) && intval($getAWACSScreening_result[0]->PWValue) != 0 && is_numeric($getAWACSScreening_result[1]->PWValue) && intval($getAWACSScreening_result[1]->PWValue) != 0)) {
+                        if (($getAWACSScreening_result[0]->PWValue / ($getAWACSScreening_result[1]->PWValue * $getAWACSScreening_result[1]->PWValue) * 703) < 25) {
+                          echo ' <label style="font-family: sans-serif; font-size: 13.5px;">No<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false" checked></label>';
+                        }else{
+                          echo ' <label style="font-family: sans-serif; font-size: 13.5px;">No<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false"></label>';
+                        }
+                      }else{
+                        echo ' <label style="font-family: sans-serif; font-size: 13.5px;">No<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false"></label>';
+                      }  
                     }else{
-                      echo ' <label style="font-family: sans-serif; font-size: 14px;">No<input type="checkbox" class="checkBox" style="width: 14px; height: 13px;" onclick="return false"></label>';
-                    }
+                      if ($val->PWNeeded === '0') {
+                        echo ' <label style="font-family: sans-serif; font-size: 13.5px;">No<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false" checked></label>';
+                      }else{
+                        echo ' <label style="font-family: sans-serif; font-size: 13.5px;">No<input type="checkbox" class="checkBox" style="width: 13.5px; height: 13.5px;" onclick="return false"></label>';
+                      }
+                    }                 
                     ?>&nbsp;
                   </td>
                 </tr>
