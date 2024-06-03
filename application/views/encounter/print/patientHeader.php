@@ -95,8 +95,8 @@ $CustomConfig_row = $CustomConfig->row();
 
 $data['data_db'] = $data_db;
 $BodyFontInfo = getChartHeaderFontInfo($data, $ConfigKey);
-$DefaultStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . $BodyFontInfo['FontSize'] . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . $BodyFontInfo['FontFace'] . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
-$LargerStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . ($BodyFontInfo['FontSize'] + 4) . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . $BodyFontInfo['FontFace'] . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
+$DefaultStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . $BodyFontInfo['FontSize'] . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
+$LargerStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . ($BodyFontInfo['FontSize'] + 4) . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
 
 $sql = "Select TOP 1
        ImageType
@@ -235,7 +235,7 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
 
 
 
-<table border="0" cellpadding="3" cellspacing="0" style="width: 7.0in;">
+<table border="0" cellpadding="3" cellspacing="0" style="width: 7.5in; padding-right: 13px;">
 
 	<tr>
     <?php
@@ -290,17 +290,17 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
       ?>	
       
         <tr>
-          <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 15px" valign="top">
+          <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 13px" valign="top">
             Patient Name: <b><?php echo $HeaderData_row->FirstName." ".$HeaderData_row->MiddleName." ".$HeaderData_row->LastName; ?></b>
           </td>
         </tr>
         <tr>
-          <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 15px" valign="top">
+          <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 13px" valign="top">
             Date: <b><?php echo date('F d, Y', strtotime($HeaderData_row->EncounterDate)); ?></b>
           </td>
         </tr>
         <tr>
-          <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 15px" valign="top">
+          <td nowrap align="left" style="<?php echo $DefaultStyle; ?> font-size: 13px" valign="top">
             Healthcare Provider: <b>
                 <?php
                 echo trim($RendStruct['Title'])." ".$RendStruct['FirstName']." ".$RendStruct['MiddleName']." ".$RendStruct['LastName'];
@@ -326,10 +326,10 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
         if($CustomConfig_row->PrintedPatientName != 0){
         ?> -->
           <tr>
-            <td nowrap align="right" style="<?php echo $DefaultStyle ?> font-size: 15px" valign="top">
+            <td nowrap align="right" style="<?php echo $DefaultStyle ?> font-size: 13px" valign="top">
              MRN:
             </td>
-            <td nowrap align="left" style="<?php echo $DefaultStyle ?> font-size: 15px" valign="top">
+            <td nowrap align="left" style="<?php echo $DefaultStyle ?> font-size: 13px" valign="top">
               <strong><?php echo $HeaderData_row->MedicalRecordNumber; ?></strong>
             </td>
           </tr>
@@ -342,10 +342,10 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
         if($CustomConfig_row->PatientDOB != 0){
         ?> -->
           <tr>
-            <td nowrap align="right" style="<?php echo $DefaultStyle ?> font-size: 15px" valign="top">
+            <td nowrap align="right" style="<?php echo $DefaultStyle ?> font-size: 13px" valign="top">
               Practice:
             </td>
-            <td nowrap align="left" style="<?php echo $DefaultStyle ?> font-size: 15px" valign="top">
+            <td nowrap align="left" style="<?php echo $DefaultStyle ?> font-size: 13px" valign="top">
               <strong>
                   New River Family Medicine <br>
                   1300 St Marys Street Suite 502 R
@@ -387,7 +387,7 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
   </tr>
   <tr style="background-color: #DDEEF3;">
     <td align="left" colspan="2">
-      <strong style="font-size: 15px; font-style: italic; color: #35A7CF;">
+      <strong style="font-size: 13px; font-style: italic; color: #35A7CF; font-family: sans-serif;">
         Your personallized Wellness Plan is based on risk factors identified during your Annual Wellness Visit. Work with your doctor to complete each of the identified screenings and recommended counseling over the next 12 months to ensure you stay as healthy as possible. Speak with your Doctor if you have any questions about this plan.
       </strong>
     </td>
