@@ -197,7 +197,7 @@ if ($getAWACSScreening_num != 0) {
                 <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; width: 25%;  border-width:1px; border-bottom: none; border-top: none; border-right: none; padding:2px;" valign="center">
                   <label style="font-size: 13.5px;">Weight: &nbsp;</label>
                 </td>
-                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
+                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; border: none; padding:2px;" valign="top">
                   <label style="font-size: 13.5px;">
                     <?php 
                       if (is_numeric($getAWACSScreening_result[0]->PWValue) && intval($getAWACSScreening_result[0]->PWValue) != 0) {
@@ -208,7 +208,7 @@ if ($getAWACSScreening_num != 0) {
                     ?>&nbsp;
                   </label>
                 </td>
-                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:0px; width: 17%; none;padding:2px;" valign="top">
+                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border: none; width: 17%; none;padding:2px;" valign="top">
                   
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-bottom: none; border-top: none; border-left: none; padding:2px;" valign="top">
@@ -219,7 +219,7 @@ if ($getAWACSScreening_num != 0) {
                 <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; width: 25%;  border-width:1px; border-bottom: none; border-top: none; border-right: none;padding:2px;" valign="center">
                   <label style="font-size: 13.5px;">Height: &nbsp;</label>
                 </td>
-                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
+                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:1px; border: none; padding:2px;" valign="top">
                   <label style="font-size: 13.5px;">
                     <?php 
                       if (is_numeric($getAWACSScreening_result[1]->PWValue) && intval($getAWACSScreening_result[1]->PWValue) != 0) {
@@ -230,7 +230,7 @@ if ($getAWACSScreening_num != 0) {
                     ?>&nbsp;
                   </label>
                 </td>
-                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:0px; width: 17%; none;padding:2px;" valign="top">
+                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border: none; width: 17%; none;padding:2px;" valign="top">
                   
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-bottom: none; border-top: none; border-left: none; padding:2px;" valign="top">
@@ -241,7 +241,7 @@ if ($getAWACSScreening_num != 0) {
                 <td nowrap align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; width: 25%;  border-width:1px; border-bottom: none; border-top: none; border-right: none;padding:2px;" valign="center">
                   <label style="font-size: 13.5px;">Body Mass Index (BMI): &nbsp;</label>
                 </td>
-                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:0px; none;padding:2px;" valign="top">
+                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; text-decoration: underline; width: 20%; border-width:1px; border: none; none;padding:2px;" valign="top">
                   <label style="font-size: 13.5px;">
                     <?php 
                     if (!is_numeric($getAWACSScreening_result[0]->PWValue) || intval($getAWACSScreening_result[0]->PWValue) == 0 || !is_numeric($getAWACSScreening_result[1]->PWValue) || intval($getAWACSScreening_result[1]->PWValue) == 0) {
@@ -252,7 +252,7 @@ if ($getAWACSScreening_num != 0) {
                     ?>&nbsp;
                   </label>
                 </td>
-                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:0px; width: 17%; none;padding:2px;" valign="top">
+                <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border: none; width: 17%; none;padding:2px;" valign="top">
                   
                 </td>
                 <td align="left" style="<?php echo $DefaultStyle; ?> border-style:solid; border-width:1px; border-bottom: none; border-top: none; border-left: none; padding:2px;" valign="top">
@@ -260,6 +260,7 @@ if ($getAWACSScreening_num != 0) {
                 </td>
               </tr>
           </table>
+
           <?php foreach ($getAWACSScreening_result as $index => $val) { ?>
             <?php if ($index == 4) { ?>
               <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
