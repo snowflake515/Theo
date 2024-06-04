@@ -266,7 +266,7 @@ if ($getAWACSScreening_num != 0) {
               <table border="0" cellpadding="0" cellspacing="0" style="width: 7.5in; padding-right: 13px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
                 <tr>
                   <td nowrap align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 14px; font-weight: bolder;">Medlcare Recommended</label>
+                    <label style="font-size: 14px; font-weight: bolder;">Medicare Recommended</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px; font-weight: bolder;">Services</label>
@@ -275,7 +275,7 @@ if ($getAWACSScreening_num != 0) {
                     <label style="font-size: 14px; font-weight: bolder;">Code</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
-                    <label style="font-size: 14px; font-weight: bolder;">Your Benefit/Guldelines</label>
+                    <label style="font-size: 14px; font-weight: bolder;">Your Benefit/Guidelines</label>
                   </td>
                   <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px; font-weight: bolder;">Needed</label>
