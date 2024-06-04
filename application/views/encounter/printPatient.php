@@ -46,7 +46,7 @@
     <link rel="shortcut icon" href="<?php echo base_url('assets/ace/img/faicon.ico') ?>">
     <style type="text/css" media="all">
       body {margin-top: 0.2in;
-            margin-left: 0in;
+            margin-left: -0.2in;
             margin-right: 0.25in;
             margin-bottom: 0.25in;
             word-wrap: break-word;

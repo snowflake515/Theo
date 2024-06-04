@@ -165,9 +165,9 @@ if ($getAWACSScreening_num != 0) {
     <tr>
       <tr>
         <td>
-          <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+          <table border="0" cellpadding="0" cellspacing="0" style="width: 7.5in; padding-right: 13px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
               <tr>
-                <td nowrap align="left" colspan="4" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                <td nowrap align="left" colspan="4" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-top: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                   <label style="font-size: 14px;">Your Key Vital Signs</label>
                 </td>
               </tr>
@@ -263,30 +263,30 @@ if ($getAWACSScreening_num != 0) {
 
           <?php foreach ($getAWACSScreening_result as $index => $val) { ?>
             <?php if ($index == 4) { ?>
-              <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="width: 7.5in; padding-right: 13px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;">
                 <tr>
-                  <td nowrap align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td nowrap align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Medlcare Recommended</label>
                   </td>
-                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Services</label>
                   </td>
-                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Code</label>
                   </td>
-                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Your Benefit/Guldellnes</label>
                   </td>
-                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Needed</label>
                   </td>
-                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
+                  <td align="left" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-top: none; border-left: none; border-right: none; padding:2px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;"></label>
                   </td>
                 </tr>
             <?php } ?>
             <?php if ($index == 15) { ?>
-              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
+              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: 7.5in; padding-right: 13px; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
                 <tr>
                   <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:5px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Social/Behavioral Screenings</label>
@@ -294,7 +294,7 @@ if ($getAWACSScreening_num != 0) {
                 </tr>
             <?php } ?>
             <?php if ($index == 20) { ?>
-              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
+              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: 7.5in; padding-right: 13px; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
                 <tr>
                   <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:5px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Your Additional Risk Factors</label>
@@ -302,7 +302,7 @@ if ($getAWACSScreening_num != 0) {
                 </tr>
             <?php } ?>
             <?php if ($index == 24) { ?>
-              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: -webkit-fill-available; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
+              <!-- <table border="0" cellpadding="0" cellspacing="0" style="width: 7.5in; padding-right: 13px; margin-bottom: 10px; border-style:solid; border-collapse:collapse; border-width:1px; border-top: none; border-left: none; border-right: none; border-color: #999999; border-spacing:2px;"> -->
                 <tr>
                   <td nowrap align="left" colspan="6" style="<?php echo $ColumnHeaderStyle; ?> border-style:solid; border-width:0px; border-left: none; border-right: none; padding-top:5px; color: #35A7CF" valign="top">
                     <label style="font-size: 14px;">Advance Care Planning</label>

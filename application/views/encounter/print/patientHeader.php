@@ -235,7 +235,7 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
 
 
 
-<table border="0" cellpadding="3" cellspacing="0" style="width: 7.5in; padding-right: 13px;">
+<table border="0" cellpadding="3" cellspacing="0" style="width: 7.5in;">
 
 	<tr>
     <?php
