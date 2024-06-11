@@ -347,9 +347,8 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
             </td>
             <td nowrap align="left" style="<?php echo $DefaultStyle ?> font-size: 13px" valign="top">
               <strong>
-                  New River Family Medicine <br>
-                  1300 St Marys Street Suite 502 R
-            </strong>
+                <?php echo $HeaderData_row->FacilityName; ?>
+              </strong>
             </td>
           </tr>
         <!-- <?php
