@@ -98,6 +98,13 @@ $BodyFontInfo = getChartHeaderFontInfo($data, $ConfigKey);
 $DefaultStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . $BodyFontInfo['FontSize'] . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
 $LargerStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . ($BodyFontInfo['FontSize'] + 4) . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
 
+$sql = "SELECT OrgName FROM Wellness_eCastEMR_Data.dbo.OrgProfile WHERE Org_ID = $Org_id ";
+
+$GetORG = $this->ReportModel->data_db->query($sql);
+$GetORG_num = $GetORG->num_rows();
+$GetORG_row = $GetORG->row();
+$this->ReportModel->data_db->close();
+
 $sql = "Select TOP 1
        ImageType
   From " . $image_db . ".dbo.AdminImages
@@ -151,6 +158,8 @@ $sql = "Select TOP 1
 $HeaderData = $this->ReportModel->data_db->query($sql);
 $HeaderData_num = $HeaderData->num_rows();
 $HeaderData_row = $HeaderData->row();
+
+log_message('error', json_encode($HeaderData_row));
 
 if ($HeaderData_num != 0) {
   $Provider_Id = $HeaderData_row->Provider_Id;
@@ -347,7 +356,7 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
             </td>
             <td nowrap align="left" style="<?php echo $DefaultStyle ?> font-size: 13px" valign="top">
               <strong>
-                <?php echo $HeaderData_row->FacilityName; ?>
+                <?php echo $GetORG_row->OrgName; ?>
               </strong>
             </td>
           </tr>

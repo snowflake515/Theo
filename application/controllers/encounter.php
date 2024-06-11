@@ -223,12 +223,12 @@ class Encounter extends CI_Controller {
     $data['print_mode'] = $print_mode;
     $data['PrintPatientOnly'] = $PrintPatientOnly;
     $data['Field'] = $cat;
+    $data['Org_id'] = $this->current_user->Org_Id;
     if($summary_report){
       $data['summary_report'] = $summary_report;
     }
 
     $html = $this->load->view($data['partial'], $data, TRUE);
-    log_message('error', $data['partial']);
 
     $q = array(
       'ID' => $dt->Encounter_ID,
