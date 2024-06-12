@@ -98,7 +98,7 @@ $BodyFontInfo = getChartHeaderFontInfo($data, $ConfigKey);
 $DefaultStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . $BodyFontInfo['FontSize'] . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
 $LargerStyle = "color: " . $BodyFontInfo['FontColor'] . "; font-size: " . ($BodyFontInfo['FontSize'] + 4) . "px; font-weight: " . $BodyFontInfo['FontWeight'] . "; font-family: " . "sans-serif" . "; font-style: " . $BodyFontInfo['FontStyle'] . "; text-decoration: " . $BodyFontInfo['FontDecoration'] . ";";
 
-$sql = "SELECT OrgName FROM Wellness_eCastEMR_Data.dbo.OrgProfile WHERE Org_ID = $Org_id ";
+$sql = "SELECT * FROM Wellness_eCastEMR_Data.dbo.OrgProfile WHERE Org_ID = $Org_id ";
 
 $GetORG = $this->ReportModel->data_db->query($sql);
 $GetORG_num = $GetORG->num_rows();
@@ -356,7 +356,7 @@ if ($CustomConfig_row->BlockInfoPosition == 0) {
             </td>
             <td nowrap align="left" style="<?php echo $DefaultStyle ?> font-size: 13px" valign="top">
               <strong>
-                <?php echo $GetORG_row->OrgName; ?>
+                <?php echo $GetORG_row->OrgName . '<br/>' . $GetORG_row->OrgCity . " " . $GetORG_row->OrgState . " " . $GetORG_row->OrgZip; ?>
               </strong>
             </td>
           </tr>
