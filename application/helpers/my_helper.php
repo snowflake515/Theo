@@ -31,6 +31,7 @@ if (!function_exists('option_select')) {
     foreach ($options as $val) {
       $result[$val->$id] = $val->$value;
     }
+    $result[(intval($val->$id) + 1)] = "Primary Care Provider";
     return $result;
   }
 
