@@ -18,7 +18,6 @@ if (!function_exists('form_value')) {
     }
     return $result;
   }
-
 }
 
 if (!function_exists('option_select')) {
@@ -31,7 +30,9 @@ if (!function_exists('option_select')) {
     foreach ($options as $val) {
       $result[$val->$id] = $val->$value;
     }
-    $result[(intval($val->$id) + 1)] = "Primary Care Provider";
+    if ($id == 'Relationship_ID') {
+      $result[(intval($val->$id) + 1)] = "Primary Care Provider";
+    }
     return $result;
   }
 
