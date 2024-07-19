@@ -1,0 +1,284 @@
+@import "functionCSS3.less";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+body, *{
+  font: 300 18px/1.6 'Source Sans Pro', 'Open Sans', Helvetica, Verdana, Arial;
+  letter-spacing: -1px;
+}
+
+body, .panel-body, .modal-content{
+  background:#F2F2F2;
+}
+.alert{
+  .radius;
+}
+
+h1, h2, h3, h5, h6 {
+  font-weight: bold;
+  color: white;
+  line-height: 54px;
+}
+
+.bold{
+  font-weight: 600;
+}
+
+.checkbox{
+  .form-control{
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+}
+
+h1 {
+  font-size: 75px;
+  letter-spacing: -4px;
+}
+
+/*.btn{
+  padding: 10px;
+  min-width: 130px;
+}*/
+
+.login-form{
+  .form-control {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto;
+    font-size: 20px;
+    font-weight: 300;
+    color: #555;
+    vertical-align: top;
+    background: white;
+    border: none;
+    .box_shadow;
+    .radius;
+    &:focus{
+
+    }
+  }
+}
+
+.form-control {
+  .box_shadow;
+    .radius;
+    font-weight: 400;
+}
+label{
+  font-size: 14px;
+}
+
+
+.btn-special {
+  text-align: center;
+  border: none;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 0;
+  padding: 7px 20px 9px;
+  color: white;
+  background-color: #9CC35C;
+  font: 300 25px 'Source Sans Pro', 'Open Sans', Helvetica, Verdana, Arial;
+  line-height: 25px;
+  border-bottom: 8px solid #84A44D;
+  .translation(border 0.3s ease 0s);
+  border-top: 0 solid transparent;
+  &:hover{
+    color: white;
+    border-bottom: 3px solid transparent;
+    border-top: 5px solid transparent;
+  }
+}
+
+.title{
+  margin: 0 0 30px;
+}
+
+#footer{
+  background:white;
+  border-top: 10px solid #37B0DD;
+  padding: 30px 0;
+}
+
+.big-project{
+  margin: 50px 0 50px;
+  @media (max-width: 500px) { 
+    font-size:40px;
+  }
+}
+
+.form-group{
+  .alert{
+    margin-bottom:0;
+    padding: 5px 10px;
+    border:0;
+    font-size: 14px;
+    .glyphicon{
+      font-size: 12px;
+    }
+  }
+  
+}
+
+
+.login-form{
+  margin-bottom: 60px;
+}
+
+#content{
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background:#3DC0F1;
+  min-height: 500px;
+  .form-link{
+    a{
+      color:white;
+    }
+  }
+}
+
+.navbar-default{
+  border:0;
+  margin:0;
+  .radius;
+  background: #37B0DD; 
+  .navbar-brand{
+    color: white;
+    &:focus, &:hover{
+      color: white;
+    }
+  }
+  .open>a, .nav .open>a:hover, .nav .open>a:focus{
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: white;
+  }
+  .navbar-collapse{
+    border-color: transparent;
+  } 
+  .dropdown-menu{
+    background: #37B0DD; 
+    .box_shadow;
+    border:0;
+    a{
+      color:white;
+      &:hover{
+        color:white;
+        background: #37B0DD; 
+        border-color: transparent !important;
+
+      }
+    }
+  }
+  .navbar-toggle{
+    .radius;
+    .icon-bar {
+      background-color: white;
+    }
+    &:focus, &:hover{
+      background: transparent;
+    }
+  }
+  .navbar-nav > li > a{
+    color: white;
+    &:focus, &:hover{
+      color: white;
+    }
+  }
+  .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus{
+    background: fade(#000, 5%); 
+    color: white;
+  }
+}
+
+
+
+
+#loading{
+  position: fixed;
+  top: 4px;
+  z-index: 99999999999;
+  left: 50%;
+  height: 40px;
+  padding: 10px;
+  display: none;
+  min-width: 300px;
+  margin-left: -150px;
+}
+
+#calendar{
+  font-weight: 400;
+  .fc-event-time,.fc-event-title{
+    font-size: 14px;
+  }
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+.ui-timepicker-select{width: 100%}
+
+
+#wrapper{
+
+}
+
+.calendar_container{
+  max-width: 100%;
+  overflow: auto;
+}
+#calendar{
+  min-width: 800px;
+}
+
+.menu-dashboard a{
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 30px 10px 15px ;
+  min-width: 150px;
+  text-align: center;
+  margin-bottom: 10px;
+  border: 1px solid #fff;
+}
+
+.menu-dashboard a:hover{
+  border: 1px solid #ddd;  
+  color: #f2f2f2;
+}
+
+.menu-dashboard a i{
+  display: block;
+}
+
+.no-margin{
+  margin: 0;
+}
+
+.form-control[readonly]{
+  cursor: pointer;
+  background: white;
+}
+
+.fc-view-month .fc-event-inner{
+  text-align: center;
+  cursor: pointer;
+}
+
+.fc-day, .fc-event{
+  cursor: pointer;
+}
+
+.table .btn{
+  margin-bottom: 3px;
+}
+
+

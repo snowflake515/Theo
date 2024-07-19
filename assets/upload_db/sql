@@ -1,0 +1,24 @@
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Table [dbo].[CheckIn_Log]    Script Date: 01/06/2014 15:51:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[CheckIn_Log](
+               [CheckIn_Id] [int] IDENTITY(1,1) NOT NULL,
+               [Appointments_Id] [int] NULL,
+               [CodeOrder] [int] NULL,
+               [CheckIn_DateTime] [datetime] NULL,
+               [Description] [varchar](15) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+               [Color] [varchar](10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+               [CheckIn_DateTime_UTC] [datetime] NULL,
+               [Users_PK] [int] NULL,
+               [AWACS_Confirm] [bit] NOT NULL DEFAULT ((0)),
+CONSTRAINT [PK_CheckIn_Log] PRIMARY KEY CLUSTERED
+(
+               [CheckIn_Id] ASC
+)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]

@@ -1,0 +1,252 @@
+.login-layout{
+  background: #ffffff !important;
+}
+
+.login-layout .widget-box {
+  background-color: #e1e1e1 !important;
+}
+#calendar{
+  min-width: 650px;
+}
+#loading, #loading-save {
+  position: fixed;
+  top: 4px;
+  z-index: 99999999999;
+  left: 50%;
+  height: 40px;
+  padding: 10px;
+  display: none;
+  min-width: 300px;
+  margin-left: -150px;
+}
+
+.form-group .alert {
+  margin-bottom: 0;
+  padding: 5px 10px;
+  border: 0;
+  font-size: 14px;
+}
+
+.fc-view-month .fc-event-inner {
+  text-align: center;
+  cursor: pointer;
+}
+
+/*.fc-event-inner{
+  padding: 5px;
+}*/
+
+table .btn{
+  margin-bottom: 3px;
+  min-width: 40px;
+}
+
+.fc-event-inner a{
+  color: #fff;
+}
+
+.bold_label{
+  margin-left: 25px;
+}
+
+.prettycheckbox{
+  display: inline-block;
+}
+.input_check{
+  display: inline-block;
+  position: relative;
+  top: -5px;
+  margin-left: 5px;
+}
+@media (min-width: 768px) {
+  .input_check{
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 768px) {
+  .input_check{
+    max-width: 500px;
+  }
+}
+@media (max-width: 580px) {
+  .input_check{
+    max-width: 199px;
+  }
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header {
+  margin-bottom: 8px;
+}
+.ui-timepicker-div dl {
+  text-align: left;
+}
+.ui-timepicker-div dl dt {
+  float: left;
+  clear: left;
+  padding: 0 0 0 5px;
+}
+.ui-timepicker-div dl dd {
+  margin: 0 10px 10px 45%;
+}
+.ui-timepicker-div td {
+  font-size: 90%;
+}
+.ui-tpicker-grid-label {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.ui-timepicker-rtl {
+  direction: rtl;
+}
+.ui-timepicker-rtl dl {
+  text-align: right;
+  padding: 0 5px 0 0;
+}
+.ui-timepicker-rtl dl dt {
+  float: right;
+  clear: right;
+}
+.ui-timepicker-rtl dl dd {
+  margin: 0 45% 10px 10px;
+}
+.ui-timepicker-select {
+  width: 100%;
+}
+.form-control, .form-group input[disabled], .form-group input:disabled{
+  color: #000 !important;
+}
+.form-control[readonly] {
+  cursor: pointer;
+  background: white;
+}
+
+#logo{
+  width: 380px;
+  max-width: 100%;
+}
+
+#alert-calendar{
+  display: none;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+@media(max-width:930px){
+  .page-header h1{
+    text-align: right;
+  }
+}
+
+
+@media(max-width:780px){
+
+  .table-responsive.table-patien{
+    padding-bottom: 80px;
+  }
+}
+
+
+@media(max-width:600px){
+
+  .nav-tabs>li{
+    width: 100%;
+  }
+  
+  .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+    border-bottom: 1px solid #ddd;
+  }
+}
+ 
+
+.ttdisplay{
+  margin-left: 20px;
+}
+
+.big-line{
+  border: 1px solid #f2f2f2;
+  height: 1px;
+  margin-top: 20px;
+  
+}
+
+.print{
+  padding: 60px;
+  background: white;
+}
+
+
+.nav-list>li>a, .nav-list>li>a:hover, .nav-list>li.active>a, .nav-list>li:hover.active>a{
+  font-size: 17px;
+}
+
+.sidebar, .sidebar:before{
+  width: 150px;
+}
+.main-content{
+  margin-left: 150px
+}
+
+.modal_bg{
+  background-color: rgba(0,0,0,0.7);
+  z-index: 999999999999;
+}
+
+.modal-hidden-scroll{
+  overflow: hidden;
+}
+ 
+
+
+
+.ctshelper2 {
+  font-family: 'Century Gothic', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ctshelper2 .subtitle {
+  font-size: 21px;
+  color: rgb(0,102,166) !important;
+  text-decoration: underline;
+  background-color: rgb(255,255,255);
+}
+
+.ctshelper2 a:link {
+  color: rgb(33,64,154);
+  text-decoration: underline;
+}
+
+.ctshelper2 a:visited {
+  color: rgb(33,64,154);
+  text-decoration: underline;
+}
+
+.ctshelper2 a:hover {
+  color: rgb(255,255,255);
+  background-color: rgb(33,64,154);
+}
+
+.ctshelper2 a:active {
+  color: rgb(33,64,154);
+  text-decoration: underline;
+}
+
+.ctshelper2 .wt1-box {
+  border: 1px solid rgb(0,0,0);
+  padding: 10px;
+  font-family: 'Century Gothic' !important;
+  font-size: 16px !important;
+  color: rgb(0,0,0);
+}
+
+.ctshelper2 .title_line > span {
+  background-color: rgb(171,186,195);
+  color: rgb(255,255,255);
+  border: none !important;
+  padding: 5px !important;
+  font-size: 24px !important;
+  font-weight: normal !important;
+  font-family: "Century Gothic" !important;
+}

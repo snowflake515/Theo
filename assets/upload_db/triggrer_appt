@@ -1,0 +1,173 @@
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_Appointments_Assurance_UPD]    Script Date: 01/10/2014 01:45:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[Trig_Appointments_Assurance_UPD] ON [dbo].[Appointments] AFTER UPDATE AS 
+Begin 
+Insert into [Assurancelog]
+(Org_id, EventDate, EventTable, EventPkey, EventStatus, TriggerType,Patient_ID) 
+Select I.Org_id, GetDate(),'Appointments',Appointments_ID,'0','Update',Patient_ID 
+From INSERTED I where I.org_id in (select x.org_id from orgprofile x where x.assurance = 1 
+									and (x.hidden = 0 or x.hidden is null))
+END 
+
+
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_Appointments_Assurance_INS]    Script Date: 01/10/2014 01:46:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[Trig_Appointments_Assurance_INS] ON [dbo].[Appointments] AFTER INSERT AS 
+Begin 
+Insert into [Assurancelog]
+(Org_id, EventDate, EventTable, EventPkey, EventStatus, TriggerType,Patient_ID) 
+Select I.Org_id, GetDate(),'Appointments',Appointments_ID,'0','Insert',Patient_ID 
+From INSERTED I where I.org_id in (select x.org_id from orgprofile x where x.assurance = 1 
+									and (x.hidden = 0 or x.hidden is null))
+END 
+
+
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_CompanyInfo]    Script Date: 01/10/2014 02:06:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[Trig_CompanyInfo] ON [dbo].[CompanyInfo] 
+FOR INSERT, UPDATE, DELETE 
+AS
+DECLARE @Org_ID Int
+DECLARE @PKey 	Int
+SELECT  @Org_ID = (SELECT Org_ID FROM Inserted)
+SELECT  @PKey 	= (SELECT Company_ID FROM Inserted)
+INSERT INTO [eCastEMR_Audit].[dbo].[AssuranceLog]
+(Org_ID,EventDate,EventTable,EventPkey,EventStatus)
+VALUES
+(@Org_ID,GetDate(),'CompanyInfo',@PKey,'0');
+
+
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_EncounterDescriptionList]    Script Date: 01/10/2014 02:08:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+ALTER TRIGGER [dbo].[Trig_EncounterDescriptionList] ON [dbo].[EncounterDescriptionList] 
+FOR INSERT, UPDATE, DELETE 
+AS
+DECLARE @Org_ID Int
+DECLARE @PKey 	Int
+SELECT  @Org_ID = (SELECT Org_ID FROM Inserted)
+SELECT  @PKey 	= (SELECT EncounterDescription_ID FROM Inserted)
+INSERT INTO [eCastEMR_Audit].[dbo].[AssuranceLog]
+(Org_ID,EventDate,EventTable,EventPkey,EventStatus)
+VALUES
+(@Org_ID,GetDate(),'EncounterDescriptionList',@PKey,'0');
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_FacilityList]    Script Date: 01/10/2014 02:08:52 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[Trig_FacilityList] ON [dbo].[FacilityList] 
+FOR INSERT, UPDATE, DELETE 
+AS
+DECLARE @Org_ID Int
+DECLARE @PKey 	Int
+SELECT  @Org_ID = (SELECT Org_ID FROM Inserted)
+SELECT  @PKey 	= (SELECT Facility_ID FROM Inserted)
+INSERT INTO [eCastEMR_Audit].[dbo].[AssuranceLog]
+(Org_ID,EventDate,EventTable,EventPkey,EventStatus)
+VALUES
+(@Org_ID,GetDate(),'FacilityList',@PKey,'0');
+
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_PatientProfile]    Script Date: 01/10/2014 02:09:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[Trig_PatientProfile] ON [dbo].[PatientProfile] 
+FOR INSERT, UPDATE, DELETE 
+AS
+DECLARE @Org_ID Int
+DECLARE @PKey 	Int
+SELECT  @Org_ID = (SELECT Org_ID FROM Inserted)
+SELECT  @PKey 	= (SELECT Patient_ID FROM Inserted)
+INSERT INTO [eCastEMR_Audit].[dbo].[AssuranceLog]
+(Org_ID,EventDate,EventTable,EventPkey,EventStatus)
+VALUES
+(@Org_ID,GetDate(),'PatientProfile',@PKey,'0');
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_PatientProfile_Assurance_INS]    Script Date: 01/10/2014 02:10:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[Trig_PatientProfile_Assurance_INS] ON [dbo].[PatientProfile] AFTER INSERT AS 
+Begin 
+Insert into [Assurancelog]
+(Org_id, EventDate, EventTable, EventPkey, EventStatus, TriggerType,Patient_ID) 
+Select I.Org_id, GetDate(),'PatientProfile',Patient_ID,'0','Insert',Patient_ID 
+From INSERTED I where I.org_id in (select x.org_id from orgprofile x where x.assurance = 1 
+									and (x.hidden = 0 or x.hidden is null))
+END
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_PatientProfile_Assurance_UPD]    Script Date: 01/10/2014 02:10:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[Trig_PatientProfile_Assurance_UPD] ON [dbo].[PatientProfile] AFTER UPDATE AS 
+Begin 
+Insert into [Assurancelog]
+(Org_id, EventDate, EventTable, EventPkey, EventStatus, TriggerType,Patient_ID) 
+Select I.Org_id, GetDate(),'PatientProfile',Patient_ID,'0','Update',Patient_ID 
+From INSERTED I where I.org_id in (select x.org_id from orgprofile x where x.assurance = 1 
+									and (x.hidden = 0 or x.hidden is null))
+END
+
+
+USE [Backup_eCastEMR_Data]
+GO
+/****** Object:  Trigger [dbo].[Trig_ProviderProfile]    Script Date: 01/10/2014 02:10:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+ALTER TRIGGER [dbo].[Trig_ProviderProfile] ON [dbo].[ProviderProfile] 
+FOR INSERT, UPDATE, DELETE 
+AS
+DECLARE @Org_ID Int
+DECLARE @PKey 	Int
+SELECT  @Org_ID = (SELECT Org_ID FROM Inserted)
+SELECT  @PKey 	= (SELECT Provider_ID FROM Inserted)
+INSERT INTO [eCastEMR_Audit].[dbo].[AssuranceLog]
+(Org_ID,EventDate,EventTable,EventPkey,EventStatus)
+VALUES
+(@Org_ID,GetDate(),'ProviderProfile',@PKey,'0');
