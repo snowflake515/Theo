@@ -54,9 +54,16 @@ class Encounter extends CI_Controller {
               ->get()->num_rows();
 
     if($dt->EncounterSignedOff != 1 || $check == 0 || $check2 > 0 ){
-      $this->generate_all_reports($dt, 'PROVIDER', 0, 0);
-      $this->generate_all_reports($dt, 'PATIENT' , 1, 0);
-      $this->generate_all_reports($dt, 'CLINICAL' , 0, 1);
+      $html = $this->generate_all_reports($dt, 'PROVIDER', 0, 0, "", "");
+      $splitString = explode("%%%###", $html);
+      $inputStr = '';
+      for ($i=1; $i < sizeof($splitString); $i+=2 ) { 
+        $inputStr .= $splitString[$i];
+      }
+      log_message('error', $inputStr);
+      $this->generate_all_reports($dt, 'PATIENT' , 1, 0, "", "");
+      $this->generate_all_reports($dt, 'CLINICAL' , 0, 1, "", "");
+      $this->generate_all_reports($dt, 'AICAREPLAN' , 0, 1, "", $inputStr);
     }
 
     //xml generate
@@ -103,6 +110,10 @@ class Encounter extends CI_Controller {
       $url_html = "./reports/clinical_reports/" . $encounterKey . '.html';
       $url_pdf = "./reports/clinical_reports/" . $encounterKey . '.pdf';
       $b_file = 'Clinical Report';
+    } elseif ($print_mode == "AICAREPLAN") {
+      $url_html = "./reports/aicareplan_reports/" . $encounterKey . '.html';
+      $url_pdf = "./reports/aicareplan_reports/" . $encounterKey . '.pdf';
+      $b_file = 'AI CARE PLAN Report';
     }
 
     $html_report = $r->html;
@@ -210,11 +221,11 @@ class Encounter extends CI_Controller {
   
   function  debug_report($encounterKey = 0){
 	  $dt = $this->get_db_encounter_row($encounterKey, TRUE);
-	  echo $this->generate_all_reports($dt, 'PROVIDER', 0, 0);
+	  echo $this->generate_all_reports($dt, 'PROVIDER', 0, 0, "", "");
   }
 
 
-  private function generate_all_reports($dt, $cat , $PrintPatientOnly = 0, $summary_report = false, $print_mode = ''){
+  private function generate_all_reports($dt, $cat , $PrintPatientOnly = 0, $summary_report = false, $print_mode = '', $inputStr){
     $data = $this->data_set();
     $data['id'] = $dt->Encounter_ID;
     $data['Encounter_Id'] = $dt->Encounter_ID;
@@ -223,7 +234,9 @@ class Encounter extends CI_Controller {
     $data['print_mode'] = $print_mode;
     $data['PrintPatientOnly'] = $PrintPatientOnly;
     $data['Field'] = $cat;
+    $data['InputStr'] = $inputStr;
     $data['Org_id'] = $this->current_user->Org_Id;
+    log_message('error', $cat);
     if($summary_report){
       $data['summary_report'] = $summary_report;
     }

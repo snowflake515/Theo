@@ -40,6 +40,9 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
             <li>
               <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/clinical/$dt->Encounter_ID")?>">Clinical Track</a>
             </li>
+            <li>
+              <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/aicareplan/$dt->Encounter_ID")?>">AI Care Plan</a>
+            </li>
           </ul>
         </div>
         <div class="btn-group dropup text-left" style="display:inline-block;">
@@ -48,6 +51,7 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
             <li><a href="<?php echo  site_url('encounter/save_report/provider/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Provider Report</a></li>
             <li><a href="<?php echo site_url('encounter/save_report/patient/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Patient Report</a></li>
             <li><a href="<?php echo site_url('encounter/save_report/clinical/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save Clinical Track</a></li>
+            <li><a href="<?php echo site_url('encounter/save_report/aicareplan/' . $dt->Encounter_ID) ?>" target="_blank" class=" no-openalert" >Save AI Care Plan</a></li>
           </ul>
         </div>
         <div class="btn-group dropup text-left" style="display:inline-block;">
@@ -63,6 +67,9 @@ if ($dt && $dt->ClinicalTriggerView == 1) {
             </li>
             <li>
             <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/clinical/$dt->Encounter_ID/print/1")?>">Print Clinical Track</a>
+            </li>
+            <li>
+            <a href="javascript:void(0);"  class="popup no-openalert" data-target="<?php echo site_url("encounter/report/aicareplan/$dt->Encounter_ID/print/1")?>">Print AI Care Plan</a>
             </li>
           </ul>
         </div>
