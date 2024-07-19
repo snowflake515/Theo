@@ -110,6 +110,10 @@ class Encounter extends CI_Controller {
       $url_html = "./reports/clinical_reports/" . $encounterKey . '.html';
       $url_pdf = "./reports/clinical_reports/" . $encounterKey . '.pdf';
       $b_file = 'Clinical Report';
+    } elseif ($print_mode == "AICAREPLAN") {
+      $url_html = "./reports/aicareplan_reports/" . $encounterKey . '.html';
+      $url_pdf = "./reports/aicareplan_reports/" . $encounterKey . '.pdf';
+      $b_file = 'AI CARE PLAN Report';
     }
 
     $html_report = $r->html;
